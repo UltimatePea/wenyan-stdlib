@@ -265,6 +265,57 @@ build_all_libraries() {
     log_message "所有庫構建完成 All library builds completed"
 }
 
+# 功能：驗證基礎設施文件
+validate_infrastructure_files() {
+    print_color $PURPLE "🔍 驗證基礎設施文件 Validating infrastructure files..."
+    print_color $PURPLE "================================================="
+    echo ""
+    
+    local infrastructure_success=true
+    local infrastructure_file_count=0
+    local infrastructure_success_count=0
+    
+    # 驗證根目錄的.wy文件（基礎設施文件）
+    for wy_file in *.wy; do
+        if [ -f "$wy_file" ]; then
+            # 跳過測試文件和示例文件
+            if [[ "$wy_file" == 測試* || "$wy_file" == *test* || "$wy_file" == 簡單* || "$wy_file" == 基礎* ]]; then
+                continue
+            fi
+            
+            ((infrastructure_file_count++))
+            
+            print_color $BLUE "🔍 驗證基礎設施文件 Validating infrastructure file: $wy_file"
+            
+            # 驗證文件語法
+            if validate_file "$wy_file"; then
+                ((infrastructure_success_count++))
+                print_color $GREEN "  ✅ 基礎設施文件驗證通過 Infrastructure file validation passed: $wy_file"
+            else
+                infrastructure_success=false
+                print_color $RED "  ❌ 基礎設施文件驗證失敗 Infrastructure file validation failed: $wy_file"
+            fi
+        fi
+    done
+    
+    # 基礎設施驗證結果
+    if [ "$infrastructure_success" = true ] && [ $infrastructure_file_count -gt 0 ]; then
+        print_color $GREEN "✅ 基礎設施文件驗證成功 Infrastructure files validation successful: ($infrastructure_success_count/$infrastructure_file_count files)"
+        log_message "基礎設施文件驗證成功 Infrastructure files validation successful"
+        ((SUCCESSFUL_BUILDS++))
+    elif [ $infrastructure_file_count -eq 0 ]; then
+        print_color $YELLOW "⚠️  未找到基礎設施文件 No infrastructure files found"
+        log_message "未找到基礎設施文件 No infrastructure files found"
+    else
+        print_color $RED "❌ 基礎設施文件驗證失敗 Infrastructure files validation failed: ($infrastructure_success_count/$infrastructure_file_count files)"
+        log_message "基礎設施文件驗證失敗 Infrastructure files validation failed"
+        ((FAILED_BUILDS++))
+    fi
+    
+    ((TOTAL_LIBS++))  # 將基礎設施視為一個庫進行統計
+    echo ""
+}
+
 # 功能：運行測試
 run_tests() {
     print_color $PURPLE "🧪 運行測試套件 Running test suite..."
@@ -648,11 +699,13 @@ main() {
     elif [ "$build_only" = true ]; then
         init_build_env
         build_all_libraries
+        validate_infrastructure_files
         create_release_archive
     else
         # 完整構建流程
         init_build_env
         build_all_libraries
+        validate_infrastructure_files
         run_tests
         generate_documentation
         create_release_archive

@@ -17,40 +17,15 @@
 
 /* ===== API設計基本原則 ===== */
 
-/*
-API設計核心原則 Core API Design Principles:
-
-1. 一致性原則 Consistency Principle
-   - 同類操作使用相同的命名模式
-   - 參數順序保持一致
-   - 返回值格式統一
-
-2. 簡潔性原則 Simplicity Principle  
-   - 函數名稱清晰表達用途
-   - 參數數量適中(建議≤5個)
-   - 避免不必要的復雜性
-
-3. 可預測性原則 Predictability Principle
-   - 函數行為符合名稱暗示
-   - 邊界條件處理一致
-   - 錯誤處理模式統一
-
-4. 可擴展性原則 Extensibility Principle
-   - 預留擴展空間
-   - 向後兼容性考慮
-   - 模塊化設計
-
-5. 文化適宜性原則 Cultural Appropriateness Principle
-   - 使用正確的繁體中文
-   - 符合文言文風格
-   - 雙語文檔支持
-*/
+/* Core API Design Principles: Consistency, Simplicity, Predictability, 
+ * Extensibility, and Cultural Appropriateness - see documentation for details
+ */
 
 /* ===== 標準API模式定義 ===== */
 
 /* 模式1: 查詢類API Query APIs */
 吾有一術。名之曰「標準查詢API模式」。欲行是術。
-必先得二物一爻。曰「數據源」。曰「查詢條件」。曰「嚴格模式」。
+必先得三物。曰「數據源」。曰「查詢條件」。曰「嚴格模式」。
 乃行是術曰。
     
     /* 參數驗證 Parameter Validation */
@@ -69,7 +44,7 @@ API設計核心原則 Core API Design Principles:
 
 /* 模式2: 處理類API Processing APIs */
 吾有一術。名之曰「標準處理API模式」。欲行是術。
-必先得一物一列。曰「輸入數據」。曰「處理選項」。
+必先得二物。曰「輸入數據」。曰「處理選項」。
 乃行是術曰。
     
     /* 輸入驗證 Input Validation */
@@ -90,7 +65,7 @@ API設計核心原則 Core API Design Principles:
 
 /* 模式3: 驗證類API Validation APIs */
 吾有一術。名之曰「標準驗證API模式」。欲行是術。
-必先得一物一列。曰「待驗證數據」。曰「驗證規則」。
+必先得二物。曰「待驗證數據」。曰「驗證規則」。
 乃行是術曰。
     
     /* 規則驗證 Rules Validation */
@@ -109,7 +84,7 @@ API設計核心原則 Core API Design Principles:
 
 /* 模式4: 轉換類API Transformation APIs */
 吾有一術。名之曰「標準轉換API模式」。欲行是術。
-必先得一物一言一列。曰「源數據」。曰「目標格式」。曰「轉換參數」。
+必先得三物。曰「源數據」。曰「目標格式」。曰「轉換參數」。
 乃行是術曰。
     
     /* 格式檢查 Format Validation */
@@ -253,7 +228,7 @@ API設計核心原則 Core API Design Principles:
 必先得一列。曰「返回結果」。
 乃行是術曰。
     
-    /* 提取結構化返回值的各個部分 */
+    /* Extract structured return value components */
     夫「返回結果」之一。名之曰「狀態」。
     夫「返回結果」之二。名之曰「數據」。
     夫「返回結果」之三。名之曰「錯誤信息」。
@@ -373,7 +348,7 @@ API設計核心原則 Core API Design Principles:
 
 /* 批處理API模式 Batch Processing API Pattern */
 吾有一術。名之曰「批處理API模式」。欲行是術。
-必先得一列一數。曰「數據列表」。曰「批次大小」。
+必先得二物。曰「數據列表」。曰「批次大小」。
 乃行是術曰。
     
     吾有一列。名之曰「處理結果列表」。
@@ -382,7 +357,7 @@ API設計核心原則 Core API Design Principles:
     吾有一數。名之曰「當前位置」。
     昔之「當前位置」者。今一是矣。
     
-    /* 分批處理數據 */
+    /* Batch process data */
     恆為是。
         若「當前位置」大於「總數據量」者。
             乃止。
@@ -569,54 +544,7 @@ API設計核心原則 Core API Design Principles:
     書之「✅ API集成測試完成」。
 是謂「API集成測試模式」之術也。
 
-/* ===== 使用指南和最佳實踐 ===== */
-
-/*
-API設計模式使用指南 API Design Pattern Usage Guide:
-
-1. 選擇合適的API模式 Choose Appropriate Pattern:
-   - 查詢操作使用「標準查詢API模式」
-   - 數據處理使用「標準處理API模式」
-   - 數據驗證使用「標準驗證API模式」
-   - 格式轉換使用「標準轉換API模式」
-
-2. 遵循命名規範 Follow Naming Conventions:
-   - 使用「生成標準API名稱」生成一致的函數名
-   - 動詞+名詞的命名模式
-   - 避免縮寫和不清晰的名稱
-
-3. 標準化參數和返回值 Standardize Parameters and Returns:
-   - 遵循參數順序原則
-   - 使用統一的返回值格式
-   - 提供可選參數的默認值
-
-4. 實現錯誤處理 Implement Error Handling:
-   - 使用「標準錯誤處理API」
-   - 提供有意義的錯誤信息
-   - 考慮錯誤恢復策略
-
-5. 優化性能 Optimize Performance:
-   - 對於計算密集型操作考慮使用緩存
-   - 大數據處理使用批處理模式
-   - 設置合理的性能目標
-
-6. 版本管理 Version Management:
-   - 使用版本兼容API模式
-   - 為廢棄的API提供警告
-   - 保持向後兼容性
-
-7. 文檔和測試 Documentation and Testing:
-   - 使用API元數據結構記錄API信息
-   - 實施全面的單元測試和集成測試
-   - 生成清晰的API文檔
-
-最佳實踐 Best Practices:
-- 保持API的簡潔性和一致性
-- 提供清晰的錯誤信息和文檔
-- 考慮性能和可擴展性
-- 遵循文言編程的文化特色
-- 實施充分的測試覆蓋
-
-Author: Whisky, PR Worker
-Version: 1.0
-*/
+/* API Design Pattern Usage Guide - see documentation for details
+ * Author: Whisky, PR Worker
+ * Version: 1.0
+ */
