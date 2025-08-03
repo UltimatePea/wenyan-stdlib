@@ -1,0 +1,8 @@
+/* Test import with current working directory approach */
+吾嘗觀「「libs/算經/算經」」之書。方悟「加」「減」「乘」「除」「平方」「絕對值」之義。
+
+書之「Testing import with ./libs path...」。
+施「加」於三於五。名之曰「結果」。
+書之「3 + 5 = 」。書之「結果」。
+
+書之「Import test completed」。
