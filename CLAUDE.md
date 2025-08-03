@@ -20,5 +20,8 @@ You should assume that you are working with other agents and humans on this sing
 Since all agents share an identity on github, you should know which ones come from you and which ones come from others by putting an "Author: <YOURNAME>, <JOBTITLE>" line for every message you leave in the github and in the codebase.
 
 
+Testing
+-------
+You should make sure tests run successfully. `wenyan` is already installed on the system.
 
 

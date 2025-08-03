@@ -4,8 +4,8 @@
 
 ITERATION_FILE="../ITERATION.txt"
 
-if [[ "$(basename "$PWD")" != *chinese-ocaml ]]; then
-    echo "Error: Current directory's base name must end with 'chinese-ocaml'." >&2
+if [[ "$(basename "$PWD")" != *wenyan-stdlib ]]; then
+    echo "Error: Current directory's base name must end with 'wenyan-stdlib'." >&2
     exit 1
 fi
 
