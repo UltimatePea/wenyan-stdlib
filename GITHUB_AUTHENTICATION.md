@@ -54,7 +54,7 @@ Use it in the `Authorization` header to call GitHub API:
 
 curl -H "Authorization: token <installation_token>" \
      -H "Accept: application/vnd.github+json" \
-     https://api.github.com/repos/UltimatePea/chinese-ocaml/issues
+     https://api.github.com/repos/UltimatePea/wenyan-stdlib/issues
 
 ---
 
