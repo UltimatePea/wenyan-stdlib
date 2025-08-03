@@ -35,3 +35,8 @@ dist/
 # Coverage reports
 coverage/
 *.lcov
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
