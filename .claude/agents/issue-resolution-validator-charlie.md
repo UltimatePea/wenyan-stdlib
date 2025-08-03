@@ -23,8 +23,8 @@ When a pull request has been merged, you will:
    - Whether appropriate tests were added to prevent regression
 
 4. **Cross-Reference with Project Context**: Consider the broader project context from CLAUDE.md:
-   - Ensure changes align with the Chinese OCaml project's goals
-   - Verify that documentation requirements were met (in Chinese)
+   - Ensure changes align with the Wenyan Standard Library project's goals
+   - Verify that documentation requirements were met
    - Check if the changes follow the project's technical standards
    - Confirm that any required testing was completed
 

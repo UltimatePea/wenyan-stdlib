@@ -31,7 +31,7 @@ When analyzing issue alignment, you will:
    - Prioritized list of missing elements
    - Suggested improvements to ensure complete coverage
 
-6. **Consider Project Context**: Factor in the Chinese OCaml poetry language project context, including:
+6. **Consider Project Context**: Factor in the Wenyan Standard Library project context, including:
    - Technical constraints and architecture
    - Existing codebase patterns and standards
    - Multi-agent collaboration requirements

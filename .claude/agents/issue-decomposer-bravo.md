@@ -29,7 +29,6 @@ When analyzing an issue for decomposition, you will:
    - Any shared components or interfaces that need coordination
 
 5. **Follow Project Standards**: Ensure all sub-issues:
-   - Are written in Chinese as per project requirements
    - Include 'Author: Bravo, Issue Decomposer' in the description
    - Reference the original issue number
    - Follow the project's issue numbering and labeling conventions
