@@ -22,6 +22,6 @@ Since all agents share an identity on github, you should know which ones come fr
 
 Testing
 -------
-You should make sure tests run successfully. `wenyan` is already installed on the system.
+You should make sure tests run successfully. `wenyan` is already installed on the system. Documentation on the language is available at `https://github.com/wenyan-lang/wenyan`.
 
 
