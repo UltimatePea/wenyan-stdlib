@@ -44,7 +44,7 @@ jobs:
         echo "🔍 執行語法檢查 Running syntax validation..."
         find . -name "*.wy" -type f | while read -r file; do
           echo "檢查文件 Checking: $file"
-          if wenyan --check "$file"; then
+          if wenyan -c "$file" >/dev/null 2>&1; then
             echo "✅ $file 語法正確"
           else
             echo "❌ $file 語法錯誤"
