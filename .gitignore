@@ -1,1 +1,37 @@
 claude.log
+
+# Wenyan Standard Library .gitignore additions
+# Author: Whisky, PR Worker
+
+# Compiled files
+*.js
+*.json.tmp
+
+# Node modules (if any JS interop needed)
+node_modules/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Build artifacts
+build/
+dist/
+
+# Coverage reports
+coverage/
+*.lcov

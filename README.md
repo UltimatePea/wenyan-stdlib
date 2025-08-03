@@ -62,17 +62,43 @@ This project aims to create a comprehensive standard library for the Wenyan prog
 6. Documentation in both Chinese and English
 
 ### Current Progress
-- ✅ String library basic implementation
-- 🔄 String library testing and refinement
-- ⏳ Array library (next priority)
-- ⏳ Math library
+- ✅ Project foundation structure established
+- ⏳ String library (字符串經) - next priority
+- ⏳ Array library (列經)
+- ⏳ Math library (算經)
 - ⏳ Other core libraries
+
+## Project Structure
+```
+wenyan-stdlib/
+├── libs/                          # 庫文件目錄
+│   ├── 庫文件命名規範.md          # 庫文件命名規範
+│   ├── 字符串經/                  # String library
+│   ├── 列經/                      # Array library
+│   ├── 算經/                      # Math library
+│   ├── 曆經/                      # Date/Time library
+│   ├── 檔經/                      # File System library
+│   ├── 網經/                      # Network library
+│   ├── 析經/                      # JSON library
+│   ├── 律經/                      # Regular Expression library
+│   ├── 密經/                      # Crypto library
+│   ├── 流經/                      # Stream library
+│   ├── 程經/                      # Process library
+│   └── 事經/                      # Event library
+├── tests/                         # 測試文件目錄
+│   ├── 測試文件規範.md            # 測試文件規範
+│   └── [對應庫名]/                # 各庫測試目錄
+└── examples/                      # 示例文件目錄
+    └── [對應庫名]/                # 各庫示例目錄
+```
 
 ### Development Guidelines
 - Each library should be self-contained in a single `.wy` file
 - Test files should be named `測試[庫名].wy`
 - Examples should demonstrate idiomatic Wenyan usage
 - API should feel natural to Chinese speakers while being functionally complete
+- Follow the naming conventions in `libs/庫文件命名規範.md`
+- Follow the testing standards in `tests/測試文件規範.md`
 
 ### Long-term Vision
 Create a fully-functional programming ecosystem in classical Chinese that:
