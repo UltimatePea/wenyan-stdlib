@@ -85,7 +85,7 @@ def github_api_request(endpoint, method='GET', data=None):
 
 def get_prs():
     """Get open pull requests from the repository"""
-    response = github_api_request('/repos/UltimatePea/chinese-ocaml/pulls?state=open')
+    response = github_api_request('/repos/UltimatePea/wenyan-stdlib/pulls?state=open')
     
     if response.status_code == 200:
         prs = response.json()
@@ -115,7 +115,7 @@ def create_pr(title, body, head_branch, base_branch='main'):
         'base': base_branch
     }
     
-    response = github_api_request('/repos/UltimatePea/chinese-ocaml/pulls', method='POST', data=data)
+    response = github_api_request('/repos/UltimatePea/wenyan-stdlib/pulls', method='POST', data=data)
     
     if response.status_code == 201:
         pr = response.json()
@@ -148,9 +148,9 @@ def create_issue(repo, title, body):
         print(response.text)
         return None
 
-def get_issue_details(issue_number):
+def get_issue_details(issue_number, repo='UltimatePea/wenyan-stdlib'):
     """Get detailed information about a specific issue"""
-    response = github_api_request(f'/repos/UltimatePea/chinese-ocaml/issues/{issue_number}')
+    response = github_api_request(f'/repos/{repo}/issues/{issue_number}')
     
     if response.status_code == 200:
         issue = response.json()
@@ -163,7 +163,7 @@ def get_issue_details(issue_number):
         print(f"  Body: {issue['body']}")
         
         # Get comments
-        comments_response = github_api_request(f'/repos/UltimatePea/chinese-ocaml/issues/{issue_number}/comments')
+        comments_response = github_api_request(f'/repos/{repo}/issues/{issue_number}/comments')
         if comments_response.status_code == 200:
             comments = comments_response.json()
             if comments:
