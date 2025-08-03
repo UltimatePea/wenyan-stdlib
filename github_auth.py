@@ -128,6 +128,26 @@ def create_pr(title, body, head_branch, base_branch='main'):
         print(response.text)
         return None
 
+def create_issue(repo, title, body):
+    """Create a new issue"""
+    data = {
+        'title': title,
+        'body': body
+    }
+    
+    response = github_api_request(f'/repos/{repo}/issues', method='POST', data=data)
+    
+    if response.status_code == 201:
+        issue = response.json()
+        print(f"Issue created successfully!")
+        print(f"Issue #{issue['number']}: {issue['title']}")
+        print(f"URL: {issue['html_url']}")
+        return issue
+    else:
+        print(f"Error creating issue: {response.status_code}")
+        print(response.text)
+        return None
+
 def get_issue_details(issue_number):
     """Get detailed information about a specific issue"""
     response = github_api_request(f'/repos/UltimatePea/chinese-ocaml/issues/{issue_number}')
@@ -164,6 +184,7 @@ def main():
     parser = argparse.ArgumentParser(description='GitHub API access tool')
     parser.add_argument('--get-prs', action='store_true', help='Get open pull requests')
     parser.add_argument('--get-issue-details', type=int, help='Get detailed information about specific issue by number')
+    parser.add_argument('--create-issue', nargs=3, metavar=('REPO', 'TITLE', 'BODY'), help='Create new issue with repo, title, and body')
     parser.add_argument('--create-pr', nargs=3, metavar=('TITLE', 'BODY', 'HEAD_BRANCH'), help='Create new PR with title, body, and head branch')
     parser.add_argument('--test-auth', action='store_true', help='Test authentication')
     parser.add_argument('--get-token', action='store_true', help='Get installation token')
@@ -174,6 +195,8 @@ def main():
         get_prs()
     elif args.get_issue_details:
         get_issue_details(args.get_issue_details)
+    elif args.create_issue:
+        create_issue(args.create_issue[0], args.create_issue[1], args.create_issue[2])
     elif args.create_pr:
         create_pr(args.create_pr[0], args.create_pr[1], args.create_pr[2])
     elif args.test_auth:
