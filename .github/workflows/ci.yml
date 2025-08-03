@@ -33,7 +33,6 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
     
     - name: 安裝文言編譯器 Install Wenyan Compiler
       run: |
@@ -121,7 +120,6 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
     
     - name: 安裝依賴 Install Dependencies
       run: |
