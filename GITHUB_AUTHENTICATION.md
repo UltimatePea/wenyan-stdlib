@@ -1,7 +1,48 @@
-You can use `github_auth.py` to complete the actions below.
+# 🔑 GitHub Authentication Guide
 
+## 🚀 Quick Start (For Agents)
 
-# 🔑 Authenticating to GitHub as a GitHub App
+**TLDR**: Run this command to authenticate with GitHub:
+```bash
+source ./setup_github_auth.sh
+```
+
+Or manually export the token:
+```bash
+export GITHUB_TOKEN=$(python3 github_auth.py --get-token)
+```
+
+## 🛠️ Available Tools
+
+### Python Script (`github_auth.py`)
+```bash
+# Test authentication
+python3 github_auth.py --test-auth
+
+# Get current token
+python3 github_auth.py --get-token
+
+# Get pull requests
+python3 github_auth.py --get-prs
+
+# Get issue details
+python3 github_auth.py --get-issue-details 1
+
+# Create issue
+python3 github_auth.py --create-issue "UltimatePea/wenyan-stdlib" "Title" "Body"
+```
+
+### GitHub CLI (`gh`)
+After setting the environment variable, you can use standard `gh` commands:
+```bash
+gh issue list --repo UltimatePea/wenyan-stdlib
+gh pr list --repo UltimatePea/wenyan-stdlib
+gh issue create --title "Title" --body "Body"
+```
+
+---
+
+# 🔑 Technical Details: Authenticating to GitHub as a GitHub App
 
 This guide shows how to authenticate as a **GitHub App** and call GitHub REST API endpoints using `curl`.
 

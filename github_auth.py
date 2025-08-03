@@ -180,12 +180,40 @@ def get_issue_details(issue_number, repo='UltimatePea/wenyan-stdlib'):
         print(response.text)
         return None
 
+def update_pr(pr_number, title=None, body=None, repo='UltimatePea/wenyan-stdlib'):
+    """Update an existing pull request"""
+    data = {}
+    if title:
+        data['title'] = title
+    if body:
+        data['body'] = body
+    
+    if not data:
+        print("No updates provided")
+        return None
+    
+    response = github_api_request(f'/repos/{repo}/pulls/{pr_number}', method='PATCH', data=data)
+    
+    if response.status_code == 200:
+        pr = response.json()
+        print(f"Pull request updated successfully!")
+        print(f"PR #{pr['number']}: {pr['title']}")
+        print(f"URL: {pr['html_url']}")
+        return pr
+    else:
+        print(f"Error updating PR: {response.status_code}")
+        print(response.text)
+        return None
+
 def main():
     parser = argparse.ArgumentParser(description='GitHub API access tool')
     parser.add_argument('--get-prs', action='store_true', help='Get open pull requests')
     parser.add_argument('--get-issue-details', type=int, help='Get detailed information about specific issue by number')
     parser.add_argument('--create-issue', nargs=3, metavar=('REPO', 'TITLE', 'BODY'), help='Create new issue with repo, title, and body')
     parser.add_argument('--create-pr', nargs=3, metavar=('TITLE', 'BODY', 'HEAD_BRANCH'), help='Create new PR with title, body, and head branch')
+    parser.add_argument('--update-pr', type=int, help='Update existing PR by number')
+    parser.add_argument('--pr-title', help='New title for PR (use with --update-pr)')
+    parser.add_argument('--pr-body', help='New body for PR (use with --update-pr)')
     parser.add_argument('--test-auth', action='store_true', help='Test authentication')
     parser.add_argument('--get-token', action='store_true', help='Get installation token')
     
@@ -199,6 +227,8 @@ def main():
         create_issue(args.create_issue[0], args.create_issue[1], args.create_issue[2])
     elif args.create_pr:
         create_pr(args.create_pr[0], args.create_pr[1], args.create_pr[2])
+    elif args.update_pr:
+        update_pr(args.update_pr, args.pr_title, args.pr_body)
     elif args.test_auth:
         try:
             token = get_installation_token()
