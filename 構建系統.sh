@@ -7,7 +7,7 @@
 # 自動化構建、驗證和打包所有庫文件
 # Automated building, validation and packaging of all library files
 
-set -euo pipefail  # 嚴格錯誤處理
+set -uo pipefail  # 嚴格錯誤處理，但允許命令錯誤繼續
 
 # 顏色輸出配置
 RED='\033[0;31m'
