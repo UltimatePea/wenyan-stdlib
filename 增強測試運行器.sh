@@ -6,7 +6,7 @@
 # 批量運行所有庫的測試文件並生成詳細報告
 # Batch run all library test files and generate detailed reports
 
-set -euo pipefail  # 嚴格錯誤處理
+set -uo pipefail  # 錯誤處理，但允許單個命令失敗
 
 echo "=========================================="
 echo "文言標準庫增強測試運行器 - Enhanced Wenyan Stdlib Test Runner"
@@ -295,18 +295,22 @@ run_all_tests() {
             print_color $CYAN "Checking library: $lib_name"
             log_to_all "檢查庫: $lib_name"
             
-            # 查找測試文件
+            # 查找測試文件 - 使用更安全的方法
             local found_tests=false
-            for test_file in "$lib_dir"/*.wy; do
-                if [ -f "$test_file" ]; then
-                    found_tests=true
-                    run_test_file "$test_file" "$lib_name"
-                fi
-            done
+            # 檢查是否存在.wy文件
+            if ls "$lib_dir"/*.wy 1> /dev/null 2>&1; then
+                for test_file in "$lib_dir"/*.wy; do
+                    if [ -f "$test_file" ]; then
+                        found_tests=true
+                        run_test_file "$test_file" "$lib_name"
+                    fi
+                done
+            fi
             
             if [ "$found_tests" = false ]; then
-                print_color $YELLOW "⚠️  警告：庫 $lib_name 沒有找到測試文件"
-                print_color $YELLOW "⚠️  Warning: No test files found for library $lib_name"
+                print_color $YELLOW "⚠️  警告：庫 $lib_name 沒有找到測試文件（這是正常的，不影響構建）"
+                print_color $YELLOW "⚠️  Warning: No test files found for library $lib_name (this is normal and doesn't affect build)"
+                log_to_all "警告: 庫 $lib_name 沒有測試文件 - 跳過"
                 ((WARNING_COUNT++))
             fi
         fi
@@ -317,11 +321,14 @@ run_all_tests() {
     print_color $CYAN "Checking root directory test files..."
     log_to_all "檢查根目錄測試文件..."
 
-    for test_file in *.wy; do
-        if [ -f "$test_file" ] && [[ "$test_file" == 測試* || "$test_file" == *test* ]]; then
-            run_test_file "$test_file" "根目錄測試"
-        fi
-    done
+    # 使用更安全的方法檢查根目錄測試文件
+    if ls *.wy 1> /dev/null 2>&1; then
+        for test_file in *.wy; do
+            if [ -f "$test_file" ] && [[ "$test_file" == 測試* || "$test_file" == *test* ]]; then
+                run_test_file "$test_file" "根目錄測試"
+            fi
+        done
+    fi
 }
 
 # 功能：生成最終報告
@@ -462,9 +469,15 @@ EOF
         print_color $GREEN "🎉 所有測試通過！All tests passed!"
         log_to_all "🎉 所有測試通過！All tests passed!"
         if [ $WARNING_COUNT -gt 0 ]; then
-            print_color $YELLOW "⚠️  注意：存在 $WARNING_COUNT 個警告，建議檢查"
-            print_color $YELLOW "⚠️  Note: $WARNING_COUNT warnings found, recommend review"
+            print_color $YELLOW "⚠️  注意：存在 $WARNING_COUNT 個警告（不影響構建成功）"
+            print_color $YELLOW "⚠️  Note: $WARNING_COUNT warnings found (does not affect build success)"
+            log_to_all "警告不影響構建 - 這些通常是缺失測試文件的提醒"
         fi
+        print_color $CYAN "📋 報告文件已生成 Reports generated:"
+        print_color $CYAN "  - 基本日誌 Basic log: $LOG_FILE"
+        print_color $CYAN "  - 詳細日誌 Detailed log: $DETAILED_LOG"
+        print_color $CYAN "  - HTML報告 HTML report: $SUMMARY_REPORT"
+        print_color $CYAN "  - JSON報告 JSON report: $JSON_REPORT"
         exit 0
     else
         print_color $RED "❌ 有 $FAILED_TESTS 個測試失敗！$FAILED_TESTS tests failed!"
