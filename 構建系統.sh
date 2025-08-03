@@ -102,7 +102,7 @@ validate_file() {
     print_color $BLUE "🔍 驗證文件 Validating: $file_name"
     
     # 語法檢查
-    if wenyan --check "$file_path" &> /dev/null; then
+    if wenyan -c "$file_path" &> /dev/null; then
         print_color $GREEN "  ✅ 語法檢查通過 Syntax validation passed"
         return 0
     else
@@ -125,7 +125,7 @@ compile_file() {
     
     # 編譯為JavaScript
     local js_output="$output_dir/${file_name%.wy}.js"
-    if wenyan "$file_path" -o "$js_output" &> /dev/null; then
+    if wenyan -c "$file_path" -o "$js_output" 2>/dev/null; then
         print_color $GREEN "  ✅ 編譯成功 Compilation successful: $js_output"
         log_message "編譯成功 Compiled successfully: $file_path -> $js_output"
         return 0
