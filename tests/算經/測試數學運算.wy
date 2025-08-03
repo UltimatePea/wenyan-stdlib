@@ -1,3 +1,13 @@
+/* 測試數學運算 - Math Library Tests
+ * Author: Whisky, PR Worker  
+ * Version: 1.0
+ * Created: 2025-08-03
+ * Issue: #17 - Math Library: Core Mathematical Operations
+ * 
+ * 數學運算庫的基礎測試文件
+ * Basic test file for the Math Library
+ */
+
 吾有一數。名之曰「甲」。
 昔之「甲」者。今十也。
 
