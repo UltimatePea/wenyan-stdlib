@@ -1,0 +1,222 @@
+{
+  "name": "wenyan-standard-library",
+  "version": "2.0.0",
+  "description": "文言標準庫 - Comprehensive standard library for the Wenyan programming language",
+  "keywords": [
+    "wenyan",
+    "wenyan-lang",
+    "standard-library",
+    "chinese-programming",
+    "文言",
+    "文言編程",
+    "標準庫"
+  ],
+  "homepage": "https://github.com/wenyan-lang/wenyan-stdlib",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wenyan-lang/wenyan-stdlib.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wenyan-lang/wenyan-stdlib/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Wenyan Standard Library Team",
+    "email": "team@wenyan-stdlib.org"
+  },
+  "contributors": [
+    {
+      "name": "Whisky",
+      "role": "PR Worker",
+      "contributions": [
+        "Testing Framework",
+        "Build System",
+        "CI/CD Pipeline",
+        "API Design Standards",
+        "Coding Standards"
+      ]
+    }
+  ],
+  "main": "dist/index.js",
+  "files": [
+    "dist/",
+    "libs/",
+    "docs/",
+    "examples/",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "文言編碼標準指南.md",
+    "API設計模式標準.wy"
+  ],
+  "scripts": {
+    "build": "./構建系統.sh",
+    "build:libs": "./構建系統.sh --build-only",
+    "build:docs": "./構建系統.sh --docs-only",
+    "test": "./增強測試運行器.sh",
+    "test:verbose": "./增強測試運行器.sh -v",
+    "test:performance": "./增強測試運行器.sh -t 2000",
+    "clean": "./構建系統.sh --clean",
+    "clean:full": "./構建系統.sh --full-clean",
+    "lint": "node scripts/lint-wenyan.js",
+    "lint:fix": "node scripts/lint-wenyan.js --fix",
+    "validate": "wenyan --check libs/**/*.wy",
+    "validate:all": "find . -name '*.wy' -exec wenyan --check {} \\;",
+    "format": "node scripts/format-wenyan.js",
+    "docs:serve": "python -m http.server 8080 -d docs/generated",
+    "dev": "npm run build:libs && npm run test",
+    "ci": "npm run validate && npm run build && npm run test",
+    "release": "npm run ci && npm run build:docs && git tag $(date +v%Y.%m.%d-%H%M%S)",
+    "release:patch": "npm version patch && npm run release",
+    "release:minor": "npm version minor && npm run release", 
+    "release:major": "npm version major && npm run release",
+    "prepack": "npm run build",
+    "postinstall": "echo '歡迎使用文言標準庫 Welcome to Wenyan Standard Library!'",
+    "start": "npm run build && npm run docs:serve"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@wenyan/cli": "^0.3.0",
+    "jq": "^1.6.0"
+  },
+  "peerDependencies": {
+    "@wenyan/cli": ">=0.2.0"
+  },
+  "optionalDependencies": {},
+  "bundledDependencies": [],
+  "config": {
+    "buildConfig": "./build.config.json",
+    "testConfig": {
+      "timeout": 30000,
+      "performanceThreshold": 1000,
+      "coverageThreshold": 80
+    },
+    "lintConfig": {
+      "rules": {
+        "require-author": true,
+        "require-docs": true,
+        "chinese-naming": true,
+        "consistent-style": true
+      }
+    }
+  },
+  "directories": {
+    "lib": "libs",
+    "test": "tests", 
+    "doc": "docs",
+    "example": "examples"
+  },
+  "wenyan": {
+    "version": ">=0.2.0",
+    "libraries": {
+      "數學庫": {
+        "path": "libs/數學庫",
+        "main": "基礎運算.wy",
+        "version": "1.0.0",
+        "description": "基礎數學運算庫",
+        "exports": ["加法", "減法", "乘法", "除法", "平方根", "冪運算"]
+      },
+      "字符串經": {
+        "path": "libs/字符串經", 
+        "main": "字符串處理.wy",
+        "version": "1.0.0",
+        "description": "字符串處理庫",
+        "exports": ["字符串長度", "字符串查找", "字符串替換", "字符串分割"]
+      },
+      "列表庫": {
+        "path": "libs/列表庫",
+        "main": "列表操作.wy", 
+        "version": "1.0.0",
+        "description": "列表和數組操作庫",
+        "exports": ["列表排序", "列表查找", "列表過濾", "列表映射"]
+      },
+      "文件庫": {
+        "path": "libs/文件庫",
+        "main": "文件操作.wy",
+        "version": "1.0.0", 
+        "description": "文件和目錄操作庫",
+        "exports": ["讀取文件", "寫入文件", "創建目錄", "刪除文件"]
+      },
+      "網絡庫": {
+        "path": "libs/網絡庫",
+        "main": "網絡請求.wy",
+        "version": "1.0.0",
+        "description": "網絡通信庫",
+        "exports": ["HTTP請求", "WebSocket連接", "FTP操作"]
+      },
+      "時間庫": {
+        "path": "libs/時間庫", 
+        "main": "時間處理.wy",
+        "version": "1.0.0",
+        "description": "時間和日期處理庫",
+        "exports": ["獲取當前時間", "時間格式化", "時間計算", "定時器"]
+      },
+      "加密庫": {
+        "path": "libs/加密庫",
+        "main": "加密算法.wy",
+        "version": "1.0.0",
+        "description": "加密和哈希庫", 
+        "exports": ["MD5哈希", "SHA256哈希", "AES加密", "RSA加密"]
+      }
+    },
+    "testing": {
+      "framework": "增強測試框架.wy",
+      "runner": "增強測試運行器.sh",
+      "performance": "增強性能測試框架.wy"
+    },
+    "build": {
+      "system": "構建系統.sh",
+      "config": "build.config.json"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/wenyan-lang"
+  },
+  "badges": [
+    {
+      "description": "Build Status",
+      "href": "https://github.com/wenyan-lang/wenyan-stdlib/actions",
+      "url": "https://github.com/wenyan-lang/wenyan-stdlib/workflows/CI/badge.svg"
+    },
+    {
+      "description": "Coverage Status", 
+      "href": "https://coveralls.io/github/wenyan-lang/wenyan-stdlib",
+      "url": "https://coveralls.io/repos/github/wenyan-lang/wenyan-stdlib/badge.svg"
+    },
+    {
+      "description": "License",
+      "href": "https://github.com/wenyan-lang/wenyan-stdlib/blob/main/LICENSE",
+      "url": "https://img.shields.io/badge/license-MIT-blue.svg"
+    },
+    {
+      "description": "Version",
+      "href": "https://www.npmjs.com/package/wenyan-standard-library",
+      "url": "https://img.shields.io/npm/v/wenyan-standard-library.svg"
+    }
+  ],
+  "os": [
+    "linux",
+    "darwin", 
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "preferGlobal": false,
+  "private": false,
+  "workspaces": [
+    "libs/*",
+    "tools/*",
+    "examples/*"
+  ]
+}

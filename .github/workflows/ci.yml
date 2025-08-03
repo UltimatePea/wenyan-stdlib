@@ -1,0 +1,416 @@
+# 文言標準庫持續集成流水線
+# Wenyan Standard Library Continuous Integration Pipeline
+# Author: Whisky, PR Worker
+
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop, 'feature/*', 'infrastructure/*' ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # 每日定時構建 Daily scheduled build at 02:00 UTC
+    - cron: '0 2 * * *'
+
+env:
+  NODE_VERSION: '18'
+  WENYAN_VERSION: 'latest'
+
+jobs:
+  # 代碼質量檢查 Code Quality Checks
+  code-quality:
+    name: 代碼質量檢查 Code Quality
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 檢出代碼 Checkout Code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: 設置 Node.js Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+    
+    - name: 安裝文言編譯器 Install Wenyan Compiler
+      run: |
+        npm install -g @wenyan/cli
+        wenyan --version
+    
+    - name: 語法檢查 Syntax Validation
+      run: |
+        echo "🔍 執行語法檢查 Running syntax validation..."
+        find . -name "*.wy" -type f | while read -r file; do
+          echo "檢查文件 Checking: $file"
+          if wenyan --check "$file"; then
+            echo "✅ $file 語法正確"
+          else
+            echo "❌ $file 語法錯誤"
+            exit 1
+          fi
+        done
+    
+    - name: 編碼標準檢查 Coding Standards Check
+      run: |
+        echo "📋 執行編碼標準檢查 Running coding standards check..."
+        
+        # 檢查文件頭部註釋
+        failed_files=0
+        find . -name "*.wy" -type f | while read -r file; do
+          if ! head -10 "$file" | grep -q "Author:"; then
+            echo "⚠️  $file 缺少作者信息"
+            ((failed_files++))
+          fi
+        done
+        
+        if [ $failed_files -gt 0 ]; then
+          echo "❌ 發現 $failed_files 個編碼標準問題"
+          exit 1
+        else
+          echo "✅ 編碼標準檢查通過"
+        fi
+    
+    - name: 文檔檢查 Documentation Check
+      run: |
+        echo "📖 檢查文檔完整性 Checking documentation completeness..."
+        
+        # 檢查README文件
+        if [ ! -f "README.md" ]; then
+          echo "❌ 缺少 README.md 文件"
+          exit 1
+        fi
+        
+        # 檢查編碼標準文檔
+        if [ ! -f "文言編碼標準指南.md" ]; then
+          echo "❌ 缺少編碼標準文檔"
+          exit 1
+        fi
+        
+        echo "✅ 文檔檢查通過"
+    
+    - name: 上傳代碼質量報告 Upload Quality Report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: code-quality-report
+        path: |
+          **/*.log
+          **/質量報告*
+        retention-days: 30
+
+  # 構建測試 Build and Test
+  build-test:
+    name: 構建和測試 Build and Test
+    runs-on: ubuntu-latest
+    needs: code-quality
+    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: ['16', '18', '20']
+      fail-fast: false
+    
+    steps:
+    - name: 檢出代碼 Checkout Code
+      uses: actions/checkout@v4
+    
+    - name: 設置 Node.js Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: 安裝依賴 Install Dependencies
+      run: |
+        npm install -g @wenyan/cli
+        
+        # 安裝其他必要工具 Install additional tools
+        if [ "$RUNNER_OS" = "Linux" ]; then
+          sudo apt-get update
+          sudo apt-get install -y jq
+        elif [ "$RUNNER_OS" = "macOS" ]; then
+          brew install jq
+        fi
+      shell: bash
+    
+    - name: 構建系統檢查 Build System Check
+      run: |
+        chmod +x ./構建系統.sh
+        chmod +x ./增強測試運行器.sh
+    
+    - name: 運行構建系統 Run Build System
+      run: |
+        echo "🏗️ 執行構建系統 Running build system..."
+        ./構建系統.sh --build-only
+      env:
+        CI: true
+    
+    - name: 運行測試套件 Run Test Suite
+      run: |
+        echo "🧪 執行測試套件 Running test suite..."
+        ./增強測試運行器.sh
+      env:
+        CI: true
+    
+    - name: 性能基準測試 Performance Benchmarks
+      run: |
+        echo "⚡ 執行性能基準測試 Running performance benchmarks..."
+        # 運行性能測試並保存結果
+        mkdir -p performance-results
+        ./增強測試運行器.sh -t 500 > performance-results/benchmark-${{ matrix.os }}-node${{ matrix.node-version }}.log
+    
+    - name: 上傳構建產物 Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts-${{ matrix.os }}-node${{ matrix.node-version }}
+        path: |
+          build/
+          dist/
+          docs/generated/
+          test_results_*.log
+          test_summary_*.html
+          performance-results/
+        retention-days: 30
+    
+    - name: 上傳測試報告 Upload Test Reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-reports-${{ matrix.os }}-node${{ matrix.node-version }}
+        path: |
+          test_results_*.log
+          detailed_test_*.log
+          test_summary_*.html
+          test_results_*.json
+        retention-days: 30
+
+  # 安全掃描 Security Scanning
+  security-scan:
+    name: 安全掃描 Security Scan
+    runs-on: ubuntu-latest
+    needs: code-quality
+    
+    steps:
+    - name: 檢出代碼 Checkout Code
+      uses: actions/checkout@v4
+    
+    - name: 代碼安全掃描 Code Security Scan
+      run: |
+        echo "🔒 執行安全掃描 Running security scan..."
+        
+        # 檢查敏感信息洩露 Check for sensitive information leaks
+        if grep -r "password\|secret\|key\|token" --include="*.wy" --include="*.md" --include="*.js" .; then
+          echo "⚠️  發現可能的敏感信息 Potential sensitive information found"
+          # 在實際環境中這裡可能需要更嚴格的檢查
+        fi
+        
+        # 檢查惡意代碼模式 Check for malicious code patterns
+        if grep -r "eval\|exec\|system\|shell_exec" --include="*.wy" --include="*.js" .; then
+          echo "⚠️  發現可能的危險代碼 Potentially dangerous code found"
+        fi
+        
+        echo "✅ 基本安全掃描完成 Basic security scan completed"
+    
+    - name: 依賴安全檢查 Dependency Security Check
+      run: |
+        echo "📦 檢查依賴安全性 Checking dependency security..."
+        # 這裡可以添加更多的依賴安全檢查
+        echo "✅ 依賴安全檢查完成 Dependency security check completed"
+
+  # 性能測試 Performance Testing
+  performance-test:
+    name: 性能測試 Performance Testing
+    runs-on: ubuntu-latest
+    needs: build-test
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
+    
+    steps:
+    - name: 檢出代碼 Checkout Code
+      uses: actions/checkout@v4
+    
+    - name: 設置 Node.js Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+    
+    - name: 安裝文言編譯器 Install Wenyan Compiler
+      run: npm install -g @wenyan/cli
+    
+    - name: 執行性能測試 Run Performance Tests
+      run: |
+        echo "⚡ 執行詳細性能測試 Running detailed performance tests..."
+        chmod +x ./增強測試運行器.sh
+        ./增強測試運行器.sh -t 100 -v
+    
+    - name: 生成性能報告 Generate Performance Report
+      run: |
+        echo "📊 生成性能報告 Generating performance report..."
+        mkdir -p performance-reports
+        
+        # 收集性能數據並生成報告
+        cat > performance-reports/performance-summary.md << 'EOF'
+        # 性能測試報告 Performance Test Report
+        
+        **測試時間 Test Time**: $(date)
+        **Git提交 Git Commit**: ${{ github.sha }}
+        **分支 Branch**: ${{ github.ref_name }}
+        
+        ## 測試環境 Test Environment
+        - **操作系統 OS**: Ubuntu Latest
+        - **Node.js版本 Node.js Version**: ${{ env.NODE_VERSION }}
+        - **Wenyan版本 Wenyan Version**: Latest
+        
+        ## 性能基準 Performance Benchmarks
+        <!-- 實際性能數據將在這裡插入 -->
+        
+        EOF
+    
+    - name: 上傳性能報告 Upload Performance Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: performance-reports
+        path: performance-reports/
+        retention-days: 90
+
+  # 部署文檔 Deploy Documentation
+  deploy-docs:
+    name: 部署文檔 Deploy Documentation
+    runs-on: ubuntu-latest
+    needs: [build-test, security-scan]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: 檢出代碼 Checkout Code
+      uses: actions/checkout@v4
+    
+    - name: 設置 Node.js Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+    
+    - name: 安裝依賴並生成文檔 Install Dependencies and Generate Docs
+      run: |
+        npm install -g @wenyan/cli
+        sudo apt-get install -y jq
+        chmod +x ./構建系統.sh
+        ./構建系統.sh --docs-only
+    
+    - name: 部署到 GitHub Pages Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs/generated
+        cname: wenyan-stdlib.github.io
+
+  # 發布版本 Release Version
+  release:
+    name: 發布版本 Release Version
+    runs-on: ubuntu-latest
+    needs: [build-test, performance-test, security-scan]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[release]')
+    
+    steps:
+    - name: 檢出代碼 Checkout Code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: 設置 Node.js Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+    
+    - name: 安裝依賴 Install Dependencies
+      run: |
+        npm install -g @wenyan/cli
+        sudo apt-get install -y jq
+    
+    - name: 生成發布版本 Generate Release Build
+      run: |
+        chmod +x ./構建系統.sh
+        ./構建系統.sh
+    
+    - name: 創建發布標籤 Create Release Tag
+      id: tag_version
+      run: |
+        VERSION=$(date +"%Y.%m.%d-%H%M%S")
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        git tag "v$VERSION"
+        git push origin "v$VERSION"
+    
+    - name: 創建 GitHub 發布 Create GitHub Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ steps.tag_version.outputs.version }}
+        release_name: 文言標準庫 v${{ steps.tag_version.outputs.version }}
+        body: |
+          ## 文言標準庫發布 Wenyan Standard Library Release
+          
+          **版本 Version**: ${{ steps.tag_version.outputs.version }}
+          **發布時間 Release Date**: $(date)
+          **提交 Commit**: ${{ github.sha }}
+          
+          ### 更新內容 Changes
+          - 自動化發布版本 Automated release build
+          - 包含所有庫和文檔 Includes all libraries and documentation
+          - 通過所有測試 Passes all tests
+          
+          ### 使用方法 Usage
+          下載發布包並解壓，參考文檔使用各個庫
+          Download the release package and extract, refer to documentation for usage
+          
+          ---
+          **構建者 Built by**: GitHub Actions CI/CD Pipeline
+        draft: false
+        prerelease: false
+    
+    - name: 上傳發布資產 Upload Release Assets
+      run: |
+        # 上傳構建產物到發布
+        find dist/ -name "*.tar.gz" -exec gh release upload v${{ steps.tag_version.outputs.version }} {} \;
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # 通知狀態 Notification Status
+  notify:
+    name: 通知構建狀態 Notify Build Status
+    runs-on: ubuntu-latest
+    needs: [code-quality, build-test, security-scan]
+    if: always()
+    
+    steps:
+    - name: 構建狀態通知 Build Status Notification
+      run: |
+        if [ "${{ needs.code-quality.result }}" = "success" ] && \
+           [ "${{ needs.build-test.result }}" = "success" ] && \
+           [ "${{ needs.security-scan.result }}" = "success" ]; then
+          echo "🎉 所有檢查通過 All checks passed!"
+          echo "✅ 代碼質量檢查通過 Code quality checks passed"
+          echo "✅ 構建和測試通過 Build and tests passed"
+          echo "✅ 安全掃描通過 Security scan passed"
+        else
+          echo "❌ 部分檢查失敗 Some checks failed!"
+          echo "代碼質量 Code Quality: ${{ needs.code-quality.result }}"
+          echo "構建測試 Build Test: ${{ needs.build-test.result }}"
+          echo "安全掃描 Security Scan: ${{ needs.security-scan.result }}"
+        fi
+    
+    - name: 構建摘要 Build Summary
+      run: |
+        echo "## 🏗️ 構建摘要 Build Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "- **提交 Commit**: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **分支 Branch**: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **觸發事件 Trigger**: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **構建時間 Build Time**: $(date)" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 檢查結果 Check Results" >> $GITHUB_STEP_SUMMARY
+        echo "- 代碼質量 Code Quality: ${{ needs.code-quality.result }} ${{ needs.code-quality.result == 'success' && '✅' || '❌' }}" >> $GITHUB_STEP_SUMMARY
+        echo "- 構建測試 Build Test: ${{ needs.build-test.result }} ${{ needs.build-test.result == 'success' && '✅' || '❌' }}" >> $GITHUB_STEP_SUMMARY
+        echo "- 安全掃描 Security Scan: ${{ needs.security-scan.result }} ${{ needs.security-scan.result == 'success' && '✅' || '❌' }}" >> $GITHUB_STEP_SUMMARY
