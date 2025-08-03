@@ -11,7 +11,7 @@ from datetime import datetime, timezone
 # GitHub App configuration
 APP_ID = 1595512
 INSTALLATION_ID = 75590650
-PRIVATE_KEY_PATH = "/home/zc/chinese-ocaml-worktrees/claudeai-v1.pem"
+PRIVATE_KEY_PATH = "/home/zc/worktrees/claudeai-v1.pem"
 
 def load_private_key():
     """Load the private key from file"""

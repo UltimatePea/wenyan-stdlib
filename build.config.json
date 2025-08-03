@@ -1,0 +1,329 @@
+{
+  "buildConfig": {
+    "version": "2.0.0",
+    "name": "Wenyan Standard Library Build Configuration",
+    "description": "文言標準庫構建配置文件",
+    "author": "Whisky, PR Worker",
+    "created": "2025-08-03",
+    
+    "directories": {
+      "source": "libs",
+      "tests": "tests",
+      "examples": "examples",
+      "build": "build",
+      "dist": "dist",
+      "docs": "docs/generated",
+      "tools": "tools"
+    },
+    
+    "compilation": {
+      "compiler": "wenyan",
+      "targetFormat": "javascript",
+      "optimizationLevel": "standard",
+      "sourceMaps": true,
+      "minification": false,
+      "transpilationTargets": ["es2018", "node16"],
+      "moduleFormat": "commonjs"
+    },
+    
+    "validation": {
+      "syntaxCheck": true,
+      "codingStyleCheck": true,
+      "dependencyCheck": true,
+      "securityScan": true,
+      "performanceTest": true,
+      "documentationCheck": true
+    },
+    
+    "testing": {
+      "framework": "enhanced-wenyan-testing",
+      "runner": "增強測試運行器.sh",
+      "testPattern": "測試*.wy",
+      "coverageThreshold": 80,
+      "performanceThreshold": {
+        "basicOperations": 10,
+        "standardOperations": 100,
+        "complexOperations": 1000
+      },
+      "parallel": true,
+      "verbose": false,
+      "outputFormats": ["console", "html", "json", "xml"]
+    },
+    
+    "performance": {
+      "benchmarking": true,
+      "memoryAnalysis": true,
+      "concurrencyTesting": true,
+      "regressionTesting": true,
+      "loadTesting": {
+        "enabled": true,
+        "levels": [1, 2, 3],
+        "maxConcurrency": 100
+      }
+    },
+    
+    "packaging": {
+      "formats": ["tar.gz", "zip"],
+      "includeSource": true,
+      "includeCompiled": true,
+      "includeDocumentation": true,
+      "includeExamples": true,
+      "versionInFilename": true,
+      "compressionLevel": 6
+    },
+    
+    "documentation": {
+      "autoGenerate": true,
+      "formats": ["html", "markdown", "json"],
+      "includeExamples": true,
+      "includePerformanceData": true,
+      "multilingual": true,
+      "languages": ["zh-TW", "en-US"],
+      "apiReference": true,
+      "tutorials": true
+    },
+    
+    "quality": {
+      "codingStandards": {
+        "enforce": true,
+        "configFile": "文言編碼標準指南.md"
+      },
+      "apiDesign": {
+        "enforce": true,
+        "configFile": "API設計模式標準.wy"
+      },
+      "errorHandling": {
+        "enforce": true,
+        "configFile": "錯誤處理標準.wy"
+      },
+      "linting": {
+        "enabled": true,
+        "rules": [
+          "require-author-comment",
+          "require-function-documentation",
+          "chinese-naming-convention",
+          "consistent-parameter-order",
+          "error-handling-required"
+        ]
+      }
+    },
+    
+    "security": {
+      "scan": true,
+      "rules": [
+        "no-sensitive-data",
+        "no-dangerous-functions",
+        "input-validation-required",
+        "output-sanitization-required"
+      ],
+      "excludePatterns": [
+        "test_*",
+        "example_*",
+        "*.log"
+      ]
+    },
+    
+    "ci": {
+      "enabled": true,
+      "platforms": ["ubuntu-latest", "macos-latest", "windows-latest"],
+      "nodeVersions": ["16", "18", "20"],
+      "wenyangVersions": ["latest"],
+      "testMatrix": true,
+      "artifacts": {
+        "retention": 30,
+        "include": [
+          "build/**/*",
+          "dist/**/*",
+          "docs/generated/**/*",
+          "test_results_*.log",
+          "performance_*.json"
+        ]
+      }
+    },
+    
+    "libraries": {
+      "數學庫": {
+        "enabled": true,
+        "priority": "high",
+        "dependencies": [],
+        "testFiles": ["測試基礎運算.wy", "測試高級函數.wy"],
+        "performanceTest": true,
+        "documentation": true
+      },
+      "字符串經": {
+        "enabled": true,
+        "priority": "high", 
+        "dependencies": [],
+        "testFiles": ["測試字符串功能.wy"],
+        "performanceTest": true,
+        "documentation": true
+      },
+      "列表庫": {
+        "enabled": true,
+        "priority": "medium",
+        "dependencies": [],
+        "testFiles": ["測試列表操作.wy"],
+        "performanceTest": true,
+        "documentation": true
+      },
+      "文件庫": {
+        "enabled": true,
+        "priority": "medium",
+        "dependencies": [],
+        "testFiles": ["測試文件操作.wy"],
+        "performanceTest": false,
+        "documentation": true
+      },
+      "網絡庫": {
+        "enabled": true,
+        "priority": "low",
+        "dependencies": [],
+        "testFiles": ["測試網絡功能.wy"],
+        "performanceTest": false,
+        "documentation": true
+      },
+      "時間庫": {
+        "enabled": true,
+        "priority": "medium",
+        "dependencies": [],
+        "testFiles": ["測試時間功能.wy"],
+        "performanceTest": true,
+        "documentation": true
+      },
+      "加密庫": {
+        "enabled": true,
+        "priority": "low",
+        "dependencies": [],
+        "testFiles": ["測試加密功能.wy"],
+        "performanceTest": true,
+        "documentation": true,
+        "security": {
+          "extraValidation": true,
+          "auditRequired": true
+        }
+      },
+      "圖像庫": {
+        "enabled": false,
+        "priority": "low",
+        "dependencies": [],
+        "testFiles": [],
+        "performanceTest": false,
+        "documentation": false,
+        "note": "未來版本實現"
+      }
+    },
+    
+    "environments": {
+      "development": {
+        "debug": true,
+        "optimization": false,
+        "testing": "full",
+        "logging": "verbose",
+        "sourceMaps": true
+      },
+      "testing": {
+        "debug": false,
+        "optimization": true,
+        "testing": "full",
+        "logging": "standard",
+        "sourceMaps": true
+      },
+      "staging": {
+        "debug": false,
+        "optimization": true,
+        "testing": "smoke",
+        "logging": "minimal",
+        "sourceMaps": false
+      },
+      "production": {
+        "debug": false,
+        "optimization": true,
+        "testing": "smoke",
+        "logging": "error-only",
+        "sourceMaps": false,
+        "minification": true
+      }
+    },
+    
+    "hooks": {
+      "preBuild": [
+        "echo '🔧 準備構建環境'",
+        "mkdir -p build dist docs/generated"
+      ],
+      "postBuild": [
+        "echo '📊 生成構建統計'",
+        "./tools/generate-build-stats.sh || true"
+      ],
+      "preTest": [
+        "echo '🧪 準備測試環境'"
+      ],
+      "postTest": [
+        "echo '📋 整理測試報告'",
+        "./tools/collect-test-reports.sh || true"
+      ],
+      "prePackage": [
+        "echo '📦 準備打包'"
+      ],
+      "postPackage": [
+        "echo '✅ 打包完成'",
+        "ls -la dist/"
+      ]
+    },
+    
+    "notifications": {
+      "enabled": true,
+      "channels": ["console", "log", "github-actions"],
+      "levels": ["error", "warning", "info"],
+      "formats": {
+        "console": "colored",
+        "log": "structured",
+        "github-actions": "summary"
+      }
+    },
+    
+    "caching": {
+      "enabled": true,
+      "buildCache": true,
+      "testCache": false,
+      "dependencyCache": true,
+      "cacheDirectory": ".cache",
+      "maxAge": 86400
+    },
+    
+    "parallel": {
+      "enabled": true,
+      "maxConcurrency": 4,
+      "buildParallel": true,
+      "testParallel": true,
+      "packageParallel": false
+    },
+    
+    "monitoring": {
+      "enabled": true,
+      "metrics": [
+        "build-time",
+        "test-duration", 
+        "package-size",
+        "memory-usage",
+        "cpu-usage"
+      ],
+      "alerts": {
+        "buildTimeThreshold": 300,
+        "testFailureThreshold": 1,
+        "packageSizeThreshold": 100
+      }
+    },
+    
+    "cleanup": {
+      "enabled": true,
+      "cleanOnSuccess": false,
+      "cleanOnFailure": false,
+      "tempFiles": [
+        "*.tmp",
+        "*.temp",
+        ".build_start_time"
+      ],
+      "logRetention": 7
+    }
+  }
+}
