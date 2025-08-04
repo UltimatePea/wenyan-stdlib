@@ -1,0 +1,28 @@
+注曰「Comprehensive Array Library Test」
+注曰「Author: Whisky, PR Worker」
+注曰「Tests the three critical generic functions mentioned in Delta's review」
+
+吾嘗觀「./libs/列經/列經.wy」之書。方悟「列經」之義。
+
+注曰「Test 1: Generic Array Mapping - 陣列映射」
+夫五。夫十。取二以施「陣列創建」。名之曰「原始陣列」。
+
+夫「原始陣列」。夫「平方變換」。取二以施「陣列映射」。名之曰「平方陣列」。
+
+夫「平方陣列」。夫一。取二以施「取陣列元素」。書之。
+
+注曰「Test 2: Generic Array Folding - 陣列折疊」
+夫三。夫五。取二以施「陣列創建」。名之曰「數值陣列」。
+
+夫「數值陣列」。夫〇。夫「加法聚合」。取三以施「陣列折疊」。書之。
+
+注曰「Test 3: Generic Array Sorting - 陣列排序」
+吾有一列。名之曰「亂序陣列」。
+充「亂序陣列」以五。
+充「亂序陣列」以二。
+充「亂序陣列」以八。
+充「亂序陣列」以一。
+
+夫「亂序陣列」。夫「升序比較」。取二以施「陣列排序」。名之曰「有序陣列」。
+
+夫「有序陣列」。夫一。取二以施「取陣列元素」。書之。
