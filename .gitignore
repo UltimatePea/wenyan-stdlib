@@ -35,3 +35,4 @@ dist/
 # Coverage reports
 coverage/
 *.lcov
+token.txt
