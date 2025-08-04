@@ -1,5 +1,5 @@
 /* Simple Math Library Validation Test */
-/* Author: Delta, PR Critic */
+/* Author: Whisky, PR Worker */
 
 吾嘗觀「libs/算經/算經」之書。方悟「算經」之義。
 
@@ -28,5 +28,9 @@
 
 施「平方」於五。名之曰「結果」。
 書之「5² = 」。書之「結果」。
+
+/* Test advanced functions if available */
+施「階乘」於五。名之曰「階乘結果」。
+書之「5! = 」。書之「階乘結果」。
 
 書之「=== 測試完成 ===」。

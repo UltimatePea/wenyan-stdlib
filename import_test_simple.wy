@@ -1,0 +1,10 @@
+/* Test simple import without path 
+   Author: Whisky, PR Implementation Agent */
+吾嘗觀「「算經」」之書。方悟「加」「減」「乘」「除」「平方」「絕對值」之義。
+
+書之「Testing import...」。
+施「加」於三於五。名之曰「結果」。
+書之「3 + 5 = 」。書之「結果」。
+
+施「平方」於四。名之曰「結果二」。
+書之「4² = 」。書之「結果二」。

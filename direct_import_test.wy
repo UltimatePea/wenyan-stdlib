@@ -1,0 +1,23 @@
+/* Test by directly including the library without import 
+ * Author: Whisky, PR Worker
+ */
+
+/* Include the entire math library here */
+吾有一術。名之曰「加」。欲行是術。必先得二數。曰「甲」。曰「乙」。乃行是術曰。
+    加「甲」以「乙」。名之曰「結果」。
+    乃得「結果」。
+是謂「加」之術也。
+
+吾有一術。名之曰「平方」。欲行是術。必先得一數。曰「數值」。乃行是術曰。
+    乘「數值」以「數值」。名之曰「結果」。
+    乃得「結果」。
+是謂「平方」之術也。
+
+/* Now test the functions */
+書之「Testing functions...」。
+施「加」於三於五。名之曰「結果」。
+書之「3 + 5 = 」。書之「結果」。
+
+施「平方」於四。名之曰「結果二」。
+書之「4² = 」。書之「結果二」。
+書之「Test completed successfully!」。
