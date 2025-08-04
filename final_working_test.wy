@@ -1,0 +1,20 @@
+注曰「Final Working Array Test - Author: Whisky, PR Worker」
+
+注曰「Include the array library」
+吾嘗觀「libs/列經/列經.wy」之書。方悟「列經」之義。
+
+注曰「Create test array using the library function」
+夫五。夫十。取二以施「陣列創建」。名之曰「測試陣列」。
+
+注曰「Test array length」
+施「取陣列長度」於「測試陣列」。書之。
+
+注曰「Test element access」
+夫「測試陣列」。夫一。取二以施「取陣列元素」。書之。
+
+注曰「Test array mapping (generic version)」
+夫「測試陣列」。夫「平方變換」。取二以施「陣列映射」。名之曰「平方結果」。
+
+夫「平方結果」。夫一。取二以施「取陣列元素」。書之。
+
+注曰「Test completed successfully」
