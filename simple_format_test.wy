@@ -1,0 +1,21 @@
+/* Simple Format Test - Check if functions return strings or numbers
+ * Author: Delta, PR Critic
+ */
+
+吾嘗觀「藏書樓/算經」之書。方悟「格式化小數」「千分位符」「驗證數字」之義。
+
+書之「Testing Issue #37 Formatting Functions」。
+
+施「格式化小數」於3.14159於二。名之曰「結果一」。
+書之「Decimal format result:」。
+書之「結果一」。
+
+施「千分位符」於1234。名之曰「結果二」。
+書之「Thousands separator result:」。
+書之「結果二」。
+
+施「驗證數字」於123。名之曰「結果三」。
+書之「Number validation result:」。
+書之「結果三」。
+
+書之「Test complete」。

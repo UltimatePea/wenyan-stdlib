@@ -1,0 +1,17 @@
+
+
+=== [PASS 0] EXPAND-MACROS ===
+[]
+
+
+=== [PASS 1] TOKENIZER ===
+[["data","/* Standalone Format Test - Direct function testing\n * Author: Delta, PR Critic - Testing without imports\n */\n\n/* Inline basic functions to test */\n",148],["decl","uninit",149],["num","1",151],["type","fun",151],["name",null,155],["iden","格式化小數",162],["ctrl","funstart",167],["ctrl","funarg",171],["num","2",173],["type","num",173],["assgn",null,175],["iden","數值",179],["assgn",null,181],["iden","精度",185],["ctrl","funbody",191],["data","/* This tests the actual implementation logic */\n    ",251],["ctrl","if",251],["iden","精度",255],["cmp","==",257],["num","2",259],["ctrl","conj",259],["ctrl","if",270],["iden","數值",274],["cmp","==",276],["data","3.14159",284],["ctrl","conj",284],["data","/* Issue #37 requires: return \"3.14\" string */\n            /* Current implementation likely returns numeric */\n            ",422],["ctrl","ret",423],["iden","數值",427],["ctrl","end",439],["ctrl","end",447],["ctrl","ret",455],["iden","數值",459],["ctrl","bigend",463],["iden","格式化小數",470],["ctrl","funend",473],["print",null,478],["iden","=== Issue #37 String vs Number Output Test ===",526],["call","r",530],["iden","格式化小數",537],["opord","r",538],["data","3.14159",546],["opord","r",546],["num","2",549],["name",null,551],["iden","測試結果",557],["print",null,561],["iden","Format decimal result: ",586],["print",null,590],["iden","測試結果",596],["print",null,601],["iden","Analysis: If result shows 3.14159 = WRONG (should be '3.14' string)",670],["print",null,674],["iden","If result shows 3.14 = PARTIALLY CORRECT (but should be string)",739]]
+
+
+=== [PASS 2] ABSTRACT SYNTAX CHAIN ===
+[{"op":"var","count":1,"type":"fun","values":[],"names":["格式化小數"],"public":false,"pos":149},{"op":"fun","arity":2,"args":[{"name":"數值","type":"num"},{"name":"精度","type":"num"}],"pos":167},{"op":"funbody","pos":191},{"op":"if","test":[["iden","精度",255],["cmp","==",257],["num","2",259]],"pos":251},{"op":"if","test":[["iden","數值",274],["cmp","==",276],["data","3.14159",284]],"pos":270},{"op":"return","value":["iden","數值",427],"pos":423},{"op":"end","pos":439},{"op":"end","pos":447},{"op":"return","value":["iden","數值",459],"pos":455},{"op":"funend","pos":463},{"op":"print","pos":478},{"op":"call","fun":["iden","格式化小數",537],"args":[["data","3.14159",546],["num","2",549]],"pos":530},{"op":"name","names":["測試結果"],"pos":551},{"op":"print","pos":561},{"op":"print","pos":590},{"op":"print","pos":601},{"op":"print","pos":674}]
+
+
+=== [PASS 3] COMPILER ===
+var 格式化小數=_=>{};格式化小數=數值=>精度=>{if (精度==2){if (數值==3.14159){return 數值;};};return 數值;};console.log();const _ans1=格式化小數(3.14159)(2);var 測試結果=_ans1;console.log();console.log();console.log();console.log();
+Loading imports 
