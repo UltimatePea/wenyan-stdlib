@@ -1,0 +1,31 @@
+{
+    "testReport": {
+        "timestamp": "2025-08-04T09:25:18-04:00",
+        "version": "2.0",
+        "framework": "Enhanced Wenyan Test Runner",
+        "summary": {
+            "total": 37,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 37,
+            "warnings": 10,
+            "errors": 0,
+            "successRate": 0
+        },
+        "performance": {
+            "totalDuration": 3,
+            "slowTests": 0,
+            "threshold": 1000
+        },
+        "categories": {
+            "unit": 0,
+            "integration": 0,
+            "performance": 0
+        },
+        "reports": {
+            "basicLog": "test_results_20250804_092515.log",
+            "detailedLog": "detailed_test_20250804_092515.log",
+            "htmlReport": "test_summary_20250804_092515.html"
+        }
+    }
+}
