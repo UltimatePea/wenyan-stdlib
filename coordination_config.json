@@ -1,0 +1,419 @@
+{
+  "agents": [
+    {
+      "name": "StringOperationsAgent",
+      "skills": [
+        "string-processing",
+        "text-manipulation",
+        "unicode-handling"
+      ],
+      "current_issues": [
+        15,
+        13
+      ],
+      "max_concurrent": 2,
+      "performance_score": 1.0
+    },
+    {
+      "name": "MathLibraryAgent",
+      "skills": [
+        "mathematical-operations",
+        "algorithms",
+        "numerical-computing"
+      ],
+      "current_issues": [
+        22,
+        17
+      ],
+      "max_concurrent": 2,
+      "performance_score": 1.0
+    },
+    {
+      "name": "FileSystemAgent",
+      "skills": [
+        "file-operations",
+        "io-handling",
+        "data-persistence"
+      ],
+      "current_issues": [
+        26
+      ],
+      "max_concurrent": 1,
+      "performance_score": 1.0
+    },
+    {
+      "name": "GeneralPurposeAgent",
+      "skills": [
+        "documentation",
+        "testing",
+        "integration",
+        "general-programming"
+      ],
+      "current_issues": [
+        18,
+        16,
+        14
+      ],
+      "max_concurrent": 3,
+      "performance_score": 0.8
+    },
+    {
+      "name": "TestAgent",
+      "skills": [
+        "general"
+      ],
+      "current_issues": [
+        997
+      ],
+      "max_concurrent": 2,
+      "performance_score": 1.0
+    }
+  ],
+  "issues": [
+    {
+      "number": 26,
+      "title": "Strategic Development Coordination: Phase 1 Implementation Sequence and Resource Allocation",
+      "state": "open",
+      "labels": [],
+      "assigned_agent": "FileSystemAgent",
+      "estimated_complexity": 5,
+      "required_skills": [
+        "string-processing",
+        "mathematical-operations",
+        "file-operations",
+        "testing",
+        "documentation"
+      ],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 24,
+      "title": "Documentation and Examples: Comprehensive Usage Guides and API Reference",
+      "state": "open",
+      "labels": [],
+      "assigned_agent": null,
+      "estimated_complexity": 5,
+      "required_skills": [
+        "string-processing",
+        "mathematical-operations",
+        "file-operations",
+        "testing",
+        "documentation"
+      ],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 23,
+      "title": "Project Infrastructure: Testing Framework Enhancement and Standards",
+      "state": "closed",
+      "labels": [
+        "ready-for-development",
+        "actionable"
+      ],
+      "assigned_agent": null,
+      "estimated_complexity": 3,
+      "required_skills": [
+        "file-operations",
+        "testing",
+        "documentation"
+      ],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 22,
+      "title": "Date/Time Library: Timezone Support and Advanced Calendar Features",
+      "state": "open",
+      "labels": [],
+      "assigned_agent": "MathLibraryAgent",
+      "estimated_complexity": 5,
+      "required_skills": [
+        "mathematical-operations",
+        "file-operations",
+        "testing"
+      ],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 21,
+      "title": "Date/Time Library: Core Calendar Operations and Chinese Calendar Support",
+      "state": "open",
+      "labels": [
+        "needs-refinement"
+      ],
+      "assigned_agent": null,
+      "estimated_complexity": 5,
+      "required_skills": [
+        "string-processing",
+        "mathematical-operations",
+        "file-operations",
+        "testing"
+      ],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 20,
+      "title": "IO Library: Advanced Stream Processing and Data Serialization",
+      "state": "open",
+      "labels": [],
+      "assigned_agent": null,
+      "estimated_complexity": 5,
+      "required_skills": [
+        "string-processing",
+        "mathematical-operations",
+        "file-operations",
+        "testing"
+      ],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 19,
+      "title": "IO Library: File Operations and Console Interaction",
+      "state": "closed",
+      "labels": [
+        "ready-for-development",
+        "actionable"
+      ],
+      "assigned_agent": "FileSystemAgent",
+      "estimated_complexity": 3,
+      "required_skills": [
+        "string-processing",
+        "file-operations",
+        "testing"
+      ],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 18,
+      "title": "Math Library: Number Formatting and Precision Control",
+      "state": "open",
+      "labels": [
+        "needs-refinement"
+      ],
+      "assigned_agent": "GeneralPurposeAgent",
+      "estimated_complexity": 3,
+      "required_skills": [
+        "mathematical-operations",
+        "file-operations",
+        "testing",
+        "documentation"
+      ],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 17,
+      "title": "Math Library: Core Mathematical Operations and Constants",
+      "state": "closed",
+      "labels": [
+        "ready-for-development",
+        "actionable"
+      ],
+      "assigned_agent": "MathLibraryAgent",
+      "estimated_complexity": 5,
+      "required_skills": [
+        "mathematical-operations",
+        "file-operations",
+        "testing",
+        "documentation"
+      ],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 16,
+      "title": "Array Library: Advanced Algorithms and Multi-dimensional Support",
+      "state": "open",
+      "labels": [
+        "needs-refinement"
+      ],
+      "assigned_agent": "GeneralPurposeAgent",
+      "estimated_complexity": 5,
+      "required_skills": [
+        "mathematical-operations",
+        "file-operations",
+        "testing",
+        "documentation"
+      ],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 15,
+      "title": "Array Library: Core Array Operations Implementation",
+      "state": "open",
+      "labels": [
+        "ready-for-development",
+        "actionable"
+      ],
+      "assigned_agent": "StringOperationsAgent",
+      "estimated_complexity": 5,
+      "required_skills": [
+        "string-processing",
+        "mathematical-operations",
+        "file-operations",
+        "testing",
+        "documentation"
+      ],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 14,
+      "title": "String Library: Performance Optimization and Edge Case Handling",
+      "state": "open",
+      "labels": [
+        "needs-refinement"
+      ],
+      "assigned_agent": "GeneralPurposeAgent",
+      "estimated_complexity": 3,
+      "required_skills": [
+        "string-processing",
+        "file-operations",
+        "testing",
+        "documentation"
+      ],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 13,
+      "title": "String Library: Advanced String Operations Implementation",
+      "state": "open",
+      "labels": [
+        "ready-for-development",
+        "actionable"
+      ],
+      "assigned_agent": "StringOperationsAgent",
+      "estimated_complexity": 5,
+      "required_skills": [
+        "string-processing",
+        "mathematical-operations",
+        "file-operations",
+        "testing",
+        "documentation"
+      ],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 10,
+      "title": "Critical String Library Syntax Errors Causing JavaScript Compilation Failures",
+      "state": "closed",
+      "labels": [],
+      "assigned_agent": null,
+      "estimated_complexity": 3,
+      "required_skills": [
+        "string-processing",
+        "file-operations",
+        "testing"
+      ],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 4,
+      "title": "\u5be6\u73fe\u5b57\u7b26\u4e32\u7d93\u57fa\u790e\u64cd\u4f5c - String Library Core Operations",
+      "state": "closed",
+      "labels": [],
+      "assigned_agent": null,
+      "estimated_complexity": 3,
+      "required_skills": [
+        "string-processing",
+        "file-operations",
+        "testing"
+      ],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 3,
+      "title": "\u5efa\u7acb\u6e2c\u8a66\u6846\u67b6\u6a19\u6e96 - Testing Framework Standards",
+      "state": "closed",
+      "labels": [],
+      "assigned_agent": null,
+      "estimated_complexity": 3,
+      "required_skills": [
+        "file-operations",
+        "testing",
+        "documentation"
+      ],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 2,
+      "title": "\u5efa\u7acb\u9805\u76ee\u57fa\u790e\u7d50\u69cb - Project Foundation Setup",
+      "state": "closed",
+      "labels": [],
+      "assigned_agent": null,
+      "estimated_complexity": 3,
+      "required_skills": [
+        "string-processing",
+        "mathematical-operations",
+        "file-operations",
+        "testing",
+        "documentation"
+      ],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 1,
+      "title": "Phase 1 Implementation Roadmap: Core Standard Library",
+      "state": "open",
+      "labels": [],
+      "assigned_agent": null,
+      "estimated_complexity": 3,
+      "required_skills": [
+        "string-processing",
+        "mathematical-operations",
+        "file-operations",
+        "testing",
+        "documentation"
+      ],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 999,
+      "title": "Test Closed Issue",
+      "state": "closed",
+      "labels": [],
+      "assigned_agent": null,
+      "estimated_complexity": 3,
+      "required_skills": [],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 998,
+      "title": "Strategic Development Coordination",
+      "state": "open",
+      "labels": [],
+      "assigned_agent": null,
+      "estimated_complexity": 3,
+      "required_skills": [],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 997,
+      "title": "Normal Feature Implementation",
+      "state": "open",
+      "labels": [],
+      "assigned_agent": "TestAgent",
+      "estimated_complexity": 3,
+      "required_skills": [],
+      "deadline": null,
+      "dependencies": []
+    }
+  ],
+  "last_updated": "2025-08-03T22:11:13.847165"
+}
