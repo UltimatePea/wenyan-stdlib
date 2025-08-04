@@ -1,4 +1,5 @@
-/* Test import with current working directory approach */
+/* Test import with current working directory approach
+   Author: Whisky, PR Implementation Agent */
 吾嘗觀「「libs/算經/算經」」之書。方悟「加」「減」「乘」「除」「平方」「絕對值」之義。
 
 書之「Testing import with ./libs path...」。
