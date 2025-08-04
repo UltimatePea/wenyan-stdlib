@@ -1,0 +1,18 @@
+注曰「Working Array Test - Author: Whisky, PR Worker」
+
+注曰「Test basic functionality with visible output」
+
+吾有一數。名之曰「甲」。昔之「甲」者。今五是矣。
+吾有一數。名之曰「乙」。昔之「乙」者。今十是矣。
+吾有一列。名之曰「測試陣列」。
+
+注曰「Create a simple array」
+充「測試陣列」以「甲」。
+充「測試陣列」以「乙」。
+充「測試陣列」以十五。
+
+注曰「Show the results」
+書之「測試陣列」。
+
+注曰「Test array length」
+夫「測試陣列」之長。書之。
