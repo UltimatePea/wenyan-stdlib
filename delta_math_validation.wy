@@ -1,0 +1,29 @@
+/* Delta Critical Math Library Validation Test */
+/* Author: Delta, PR Critic */
+
+吾嘗觀「libs/算經/算經」之書。方悟「算經」之義。
+
+書之「=== Delta Critical Math Library Validation ===」。
+
+/* Test Basic Functions */
+施「加」於三於五。名之曰「加法結果」。
+書之「加法結果: 」。書之「加法結果」。
+
+施「平方」於四。名之曰「平方結果」。
+書之「平方結果: 」。書之「平方結果」。
+
+施「平方根」於九。名之曰「開方結果」。
+書之「開方結果: 」。書之「開方結果」。
+
+/* Test Constants */
+書之「圓周率: 」。書之「圓周率」。
+書之「自然常數: 」。書之「自然常數」。
+
+/* Test Trigonometric */
+施「正弦」於〇。名之曰「正弦結果」。
+書之「sin(0): 」。書之「正弦結果」。
+
+施「餘弦」於〇。名之曰「餘弦結果」。
+書之「cos(0): 」。書之「餘弦結果」。
+
+書之「=== Validation Complete ===」。

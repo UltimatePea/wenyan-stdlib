@@ -1,0 +1,9 @@
+注曰「Test direct library file import」
+吾嘗觀「「字符串經/字符串經.wy」」之書。方悟「取字符串長度」之義。
+
+注曰「Test string length function with direct import」
+吾有一言。名之曰「測試字符串」。
+昔之「測試字符串」者。今「「Hello」」是矣。
+施「取字符串長度」於「測試字符串」。名之曰「長度結果」。
+書之「Direct import test completed」。
+書之「長度結果」。
