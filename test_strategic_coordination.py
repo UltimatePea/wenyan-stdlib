@@ -458,6 +458,150 @@ class TestErrorHandling(unittest.TestCase):
         success = self.coordinator.update_issue_progress(107, 'in_progress', 50)
         self.assertFalse(success)
     
+    def test_closed_issue_assignment_critical_fix(self):
+        """CRITICAL TEST: Test assignment of closed issue is prevented"""
+        # Add a closed issue
+        closed_issue = Issue(
+            number=108,
+            title='Closed issue test',
+            state='closed',
+            labels=[],
+            estimated_complexity=2
+        )
+        self.coordinator.issues[108] = closed_issue
+        
+        # Add test agent
+        self.coordinator.agents['TestAgent'] = Agent(
+            name='TestAgent',
+            skills=['general-programming'],
+            current_issues=[],
+            max_concurrent=2,
+            performance_score=1.0
+        )
+        
+        # Attempt assignment should fail
+        success = self.coordinator.assign_issue(108, 'TestAgent')
+        self.assertFalse(success)
+        
+        # Verify agent was not assigned
+        self.assertIsNone(closed_issue.assigned_agent)
+        self.assertEqual(len(self.coordinator.agents['TestAgent'].current_issues), 0)
+    
+    @patch('strategic_coordinator.github_api_request')
+    def test_github_state_synchronization_critical_fix(self, mock_api):
+        """CRITICAL TEST: Test real-time GitHub state synchronization"""
+        # Add an issue that appears open locally but is closed on GitHub
+        issue = Issue(
+            number=109,
+            title='State sync test issue',
+            state='open',
+            labels=[],
+            estimated_complexity=2
+        )
+        self.coordinator.issues[109] = issue
+        
+        # Add test agent
+        self.coordinator.agents['TestAgent'] = Agent(
+            name='TestAgent',
+            skills=['general-programming'],
+            current_issues=[],
+            max_concurrent=2,
+            performance_score=1.0
+        )
+        
+        # Mock GitHub API to return closed state
+        mock_response = Mock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {
+            'number': 109,
+            'title': 'State sync test issue',
+            'state': 'closed',
+            'labels': []
+        }
+        mock_api.return_value = mock_response
+        
+        # Assignment should fail and local state should be updated
+        success = self.coordinator.assign_issue(109, 'TestAgent')
+        self.assertFalse(success)
+        
+        # Verify local state was updated to match GitHub
+        self.assertEqual(issue.state, 'closed')
+        self.assertIsNone(issue.assigned_agent)
+    
+    def test_coordination_issue_self_assignment_protection_critical_fix(self):
+        """CRITICAL TEST: Test protection against coordination issue self-assignment"""
+        # Add coordination-related issues
+        coordination_issues = [
+            Issue(
+                number=110,
+                title='Strategic Development Coordination Enhancement',
+                state='open',
+                labels=[],
+                estimated_complexity=4
+            ),
+            Issue(
+                number=111,
+                title='Workflow Assignment Optimization',
+                state='open',
+                labels=[],
+                estimated_complexity=3
+            ),
+            Issue(
+                number=112,
+                title='Resource Allocation System Update',
+                state='open',
+                labels=[],
+                estimated_complexity=3
+            )
+        ]
+        
+        for issue in coordination_issues:
+            self.coordinator.issues[issue.number] = issue
+        
+        # Add test agent
+        self.coordinator.agents['TestAgent'] = Agent(
+            name='TestAgent',
+            skills=['general-programming'],
+            current_issues=[],
+            max_concurrent=5,
+            performance_score=1.0
+        )
+        
+        # All coordination issue assignments should fail
+        for issue in coordination_issues:
+            success = self.coordinator.assign_issue(issue.number, 'TestAgent')
+            self.assertFalse(success, f"Coordination issue #{issue.number} should not be assignable")
+            self.assertIsNone(issue.assigned_agent)
+        
+        # Verify agent has no assignments
+        self.assertEqual(len(self.coordinator.agents['TestAgent'].current_issues), 0)
+    
+    def test_edge_case_empty_coordination_keywords(self):
+        """Test edge case with empty or minimal issue titles"""
+        # Issue with minimal title
+        minimal_issue = Issue(
+            number=113,
+            title='A',
+            state='open',
+            labels=[],
+            estimated_complexity=1
+        )
+        self.coordinator.issues[113] = minimal_issue
+        
+        # Add test agent
+        self.coordinator.agents['TestAgent'] = Agent(
+            name='TestAgent',
+            skills=['general-programming'],
+            current_issues=[],
+            max_concurrent=2,
+            performance_score=1.0
+        )
+        
+        # Should succeed (not a coordination issue)
+        success = self.coordinator.assign_issue(113, 'TestAgent')
+        self.assertTrue(success)
+        self.assertEqual(minimal_issue.assigned_agent, 'TestAgent')
+    
     @patch('strategic_coordinator.github_api_request')
     def test_github_api_error_handling(self, mock_api):
         """Test handling of GitHub API errors"""
@@ -467,6 +611,16 @@ class TestErrorHandling(unittest.TestCase):
         
         github_issues = self.coordinator.fetch_github_issues()
         self.assertEqual(len(github_issues), 0)  # Should return empty list on error
+    
+    @patch('strategic_coordinator.github_api_request')
+    def test_github_issue_details_error_handling(self, mock_api):
+        """Test handling of GitHub issue details API errors"""
+        # Mock API error for specific issue
+        mock_api.return_value.status_code = 404
+        mock_api.return_value.text = 'Not Found'
+        
+        issue_details = self.coordinator.fetch_github_issue_details(999)
+        self.assertIsNone(issue_details)
 
 def run_coordination_system_tests():
     """Run comprehensive test suite for strategic coordination system"""

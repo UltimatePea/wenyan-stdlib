@@ -165,6 +165,22 @@ class StrategicCoordinator:
             print(f"Error fetching issues: {response.status_code}")
             return []
     
+    def fetch_github_issue_details(self, issue_number: int) -> Optional[Dict]:
+        """Fetch specific issue details from GitHub API for real-time state validation"""
+        response = github_api_request(f'/repos/UltimatePea/wenyan-stdlib/issues/{issue_number}')
+        
+        if response.status_code == 200:
+            issue_data = response.json()
+            # Filter out pull requests (they have 'pull_request' key)
+            if 'pull_request' not in issue_data:
+                return issue_data
+        elif response.status_code == 404:
+            print(f"Issue #{issue_number} not found on GitHub")
+        else:
+            print(f"Error fetching issue #{issue_number}: {response.status_code}")
+        
+        return None
+    
     def analyze_issue_requirements(self, issue_data: Dict) -> Tuple[List[str], int]:
         """Analyze issue to determine required skills and complexity"""
         title = issue_data['title'].lower()
@@ -244,6 +260,29 @@ class StrategicCoordinator:
             return False
         
         issue = self.issues[issue_number]
+        
+        # CRITICAL FIX: Validate issue state before assignment
+        if issue.state != 'open':
+            print(f"Cannot assign issue #{issue_number}: Issue is {issue.state}, not open")
+            return False
+        
+        # CRITICAL FIX: Real-time GitHub state synchronization
+        github_issue_data = self.fetch_github_issue_details(issue_number)
+        if github_issue_data:
+            if github_issue_data['state'] != 'open':
+                print(f"Cannot assign issue #{issue_number}: GitHub shows issue is {github_issue_data['state']}")
+                # Update local state to match GitHub
+                issue.state = github_issue_data['state']
+                self.save_configuration()
+                return False
+        else:
+            print(f"Warning: Could not verify GitHub state for issue #{issue_number}")
+        
+        # CRITICAL FIX: Protection against coordination issue self-assignment
+        coordination_keywords = ['coordination', 'strategic', 'workflow', 'assignment', 'resource allocation']
+        if any(keyword in issue.title.lower() for keyword in coordination_keywords):
+            print(f"Cannot assign coordination issue #{issue_number}: This would create circular dependencies")
+            return False
         
         if agent_name is None:
             agent_name = self.find_best_agent(issue)
