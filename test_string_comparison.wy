@@ -1,0 +1,23 @@
+注曰「Test String Comparison Syntax」
+注曰「Author: Whisky, PR Worker」
+
+吾有一言。名之曰「測試字符串」。
+昔之「測試字符串」者。今「測試值」是矣。
+
+吾有一言。名之曰「比較值」。
+昔之「比較值」者。今「測試值」是矣。
+
+若「測試字符串」等於「比較值」者。
+    書之「Equal variables test passed」。
+云云。
+
+吾有一言。名之曰「字面值」。
+昔之「字面值」者。今「字面值」是矣。
+
+若「測試字符串」等於「字面值」者。
+    書之「Should not match literal」。
+不然者。
+    書之「Literal comparison correct」。
+云云。
+
+書之「String comparison test done」。
