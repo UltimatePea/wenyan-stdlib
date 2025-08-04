@@ -95,6 +95,10 @@ class StrategicCoordinator:
                 issue = Issue(**issue_data)
                 self.issues[issue.number] = issue
                 
+            # If no agents are loaded, create default configuration
+            if not self.agents:
+                self.create_default_configuration()
+                
         except FileNotFoundError:
             # Initialize with default configuration
             self.create_default_configuration()
