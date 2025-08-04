@@ -180,12 +180,31 @@ def get_issue_details(issue_number, repo='UltimatePea/wenyan-stdlib'):
         print(response.text)
         return None
 
+def create_pr_comment(pr_number, body, repo='UltimatePea/wenyan-stdlib'):
+    """Create a comment on a pull request"""
+    data = {
+        'body': body
+    }
+    
+    response = github_api_request(f'/repos/{repo}/issues/{pr_number}/comments', method='POST', data=data)
+    
+    if response.status_code == 201:
+        comment = response.json()
+        print(f"Comment created successfully on PR #{pr_number}")
+        print(f"Comment URL: {comment['html_url']}")
+        return comment
+    else:
+        print(f"Error creating PR comment: {response.status_code}")
+        print(response.text)
+        return None
+
 def main():
     parser = argparse.ArgumentParser(description='GitHub API access tool')
     parser.add_argument('--get-prs', action='store_true', help='Get open pull requests')
     parser.add_argument('--get-issue-details', type=int, help='Get detailed information about specific issue by number')
     parser.add_argument('--create-issue', nargs=3, metavar=('REPO', 'TITLE', 'BODY'), help='Create new issue with repo, title, and body')
     parser.add_argument('--create-pr', nargs=3, metavar=('TITLE', 'BODY', 'HEAD_BRANCH'), help='Create new PR with title, body, and head branch')
+    parser.add_argument('--create-pr-comment', nargs=2, metavar=('PR_NUMBER', 'BODY'), help='Create comment on PR')
     parser.add_argument('--test-auth', action='store_true', help='Test authentication')
     parser.add_argument('--get-token', action='store_true', help='Get installation token')
     
@@ -199,6 +218,8 @@ def main():
         create_issue(args.create_issue[0], args.create_issue[1], args.create_issue[2])
     elif args.create_pr:
         create_pr(args.create_pr[0], args.create_pr[1], args.create_pr[2])
+    elif args.create_pr_comment:
+        create_pr_comment(int(args.create_pr_comment[0]), args.create_pr_comment[1])
     elif args.test_auth:
         try:
             token = get_installation_token()
