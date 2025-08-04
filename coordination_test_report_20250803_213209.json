@@ -1,0 +1,29 @@
+{
+  "timestamp": "2025-08-03T21:32:09.221132",
+  "total_tests": 18,
+  "failures": 1,
+  "errors": 3,
+  "success_rate": 77.77777777777779,
+  "details": {
+    "failures": [
+      {
+        "test": "test_complete_assignment_workflow (__main__.TestIntegration.test_complete_assignment_workflow)",
+        "message": "Traceback (most recent call last):\n  File \"/home/zc/miniconda3/lib/python3.12/unittest/mock.py\", line 1393, in patched\n    return func(*newargs, **newkeywargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/zc/worktrees/wenyan-stdlib/test_strategic_coordination.py\", line 397, in test_complete_assignment_workflow\n    self.assertTrue(success)\nAssertionError: False is not true\n"
+      }
+    ],
+    "errors": [
+      {
+        "test": "test_daily_report_generation (__main__.TestCoordinationWorkflow.test_daily_report_generation)",
+        "message": "Traceback (most recent call last):\n  File \"/home/zc/worktrees/wenyan-stdlib/test_strategic_coordination.py\", line 348, in test_daily_report_generation\n    report = self.workflow.generate_daily_status_report()\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/zc/worktrees/wenyan-stdlib/coordination_workflow.py\", line 223, in generate_daily_status_report\n    'pr_status': self.monitor_pr_status(),\n                 ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/zc/worktrees/wenyan-stdlib/coordination_workflow.py\", line 179, in monitor_pr_status\n    if pr['mergeable_state'] == 'dirty':\n       ~~^^^^^^^^^^^^^^^^^^^\nKeyError: 'mergeable_state'\n"
+      },
+      {
+        "test": "test_pr_monitoring (__main__.TestCoordinationWorkflow.test_pr_monitoring)",
+        "message": "Traceback (most recent call last):\n  File \"/home/zc/miniconda3/lib/python3.12/unittest/mock.py\", line 1393, in patched\n    return func(*newargs, **newkeywargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/zc/worktrees/wenyan-stdlib/test_strategic_coordination.py\", line 339, in test_pr_monitoring\n    pr_status = self.workflow.monitor_pr_status()\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/zc/worktrees/wenyan-stdlib/coordination_workflow.py\", line 192, in monitor_pr_status\n    approved_reviews = [r for r in reviews if r['state'] == 'APPROVED']\n                                              ~^^^^^^^^^\nKeyError: 'state'\n"
+      },
+      {
+        "test": "test_stale_detection (__main__.TestCoordinationWorkflow.test_stale_detection)",
+        "message": "Traceback (most recent call last):\n  File \"/home/zc/miniconda3/lib/python3.12/unittest/mock.py\", line 1393, in patched\n    return func(*newargs, **newkeywargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/zc/worktrees/wenyan-stdlib/test_strategic_coordination.py\", line 307, in test_stale_detection\n    stale_issues = self.workflow.check_stale_assignments(days_threshold=3)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/zc/worktrees/wenyan-stdlib/coordination_workflow.py\", line 50, in check_stale_assignments\n    if updated_at < cutoff_date:\n       ^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: can't compare offset-naive and offset-aware datetimes\n"
+      }
+    ]
+  }
+}

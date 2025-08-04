@@ -231,7 +231,7 @@ class StrategicCoordinator:
                 best_score = score
                 best_agent = name
         
-        return best_agent if best_score > 0.3 else None  # Minimum threshold
+        return best_agent if best_score > 0.1 else None  # Minimum threshold (adjusted per Delta feedback)
     
     def assign_issue(self, issue_number: int, agent_name: Optional[str] = None) -> bool:
         """Assign an issue to an agent (auto-select if not specified)"""
