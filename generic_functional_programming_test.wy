@@ -2,7 +2,7 @@
 注曰「Author: Whisky, PR Worker - Testing Delta's critical requirements」
 注曰「Test generic map, fold, and sort functions with custom functions」
 
-吾嘗觀「./libs/列經/列經.wy」之書。
+吾嘗觀「/home/zc/worktrees/wenyan-stdlib/libs/列經/列經.wy」之書。
 
 注曰「測試一：Generic Map Function with Custom Transformation Functions」
 書之「=== 測試通用映射函數 ==="。
