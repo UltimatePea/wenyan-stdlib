@@ -22,7 +22,8 @@
         "numerical-computing"
       ],
       "current_issues": [
-        22
+        22,
+        17
       ],
       "max_concurrent": 2,
       "performance_score": 1.0
@@ -35,7 +36,7 @@
         "data-persistence"
       ],
       "current_issues": [
-        19
+        26
       ],
       "max_concurrent": 1,
       "performance_score": 1.0
@@ -55,6 +56,17 @@
       ],
       "max_concurrent": 3,
       "performance_score": 0.8
+    },
+    {
+      "name": "TestAgent",
+      "skills": [
+        "general"
+      ],
+      "current_issues": [
+        997
+      ],
+      "max_concurrent": 2,
+      "performance_score": 1.0
     }
   ],
   "issues": [
@@ -63,7 +75,7 @@
       "title": "Strategic Development Coordination: Phase 1 Implementation Sequence and Resource Allocation",
       "state": "open",
       "labels": [],
-      "assigned_agent": null,
+      "assigned_agent": "FileSystemAgent",
       "estimated_complexity": 5,
       "required_skills": [
         "string-processing",
@@ -203,7 +215,7 @@
         "ready-for-development",
         "actionable"
       ],
-      "assigned_agent": "FileSystemAgent",
+      "assigned_agent": "MathLibraryAgent",
       "estimated_complexity": 5,
       "required_skills": [
         "mathematical-operations",
@@ -368,7 +380,40 @@
       ],
       "deadline": null,
       "dependencies": []
+    },
+    {
+      "number": 999,
+      "title": "Test Closed Issue",
+      "state": "closed",
+      "labels": [],
+      "assigned_agent": null,
+      "estimated_complexity": 3,
+      "required_skills": [],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 998,
+      "title": "Strategic Development Coordination",
+      "state": "open",
+      "labels": [],
+      "assigned_agent": null,
+      "estimated_complexity": 3,
+      "required_skills": [],
+      "deadline": null,
+      "dependencies": []
+    },
+    {
+      "number": 997,
+      "title": "Normal Feature Implementation",
+      "state": "open",
+      "labels": [],
+      "assigned_agent": "TestAgent",
+      "estimated_complexity": 3,
+      "required_skills": [],
+      "deadline": null,
+      "dependencies": []
     }
   ],
-  "last_updated": "2025-08-03T21:50:17.966862"
+  "last_updated": "2025-08-03T22:11:13.847165"
 }
