@@ -1,0 +1,23 @@
+/* Simple Math Library Validation Test */
+/* Author: Whisky, PR Worker */
+
+吾嘗觀「libs/算經/算經」之書。方悟「算經」之義。
+
+書「===== 簡單數學庫驗證 =====」。
+
+/* Test basic arithmetic */
+施「加」於三於五。名之曰「結果」。
+書「3 + 5 = 」。書「結果」。
+
+/* Test mathematical constants */
+書「圓周率 π = 」。書「圓周率」。
+書「自然常數 e = 」。書「自然常數」。
+
+/* Test advanced functions */
+施「平方」於五。名之曰「平方結果」。
+書「5² = 」。書「平方結果」。
+
+施「階乘」於五。名之曰「階乘結果」。
+書「5! = 」。書「階乘結果」。
+
+書「===== 驗證完成 =====」。
