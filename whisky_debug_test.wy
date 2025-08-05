@@ -1,0 +1,34 @@
+/* 
+Whisky Debug Test - Core Issue #37 Functions
+Author: Whisky, PR Worker - Debug Testing
+*/
+
+吾嘗觀「「libs/算經/算經」」之書。方悟「格式化小數」「科學記號」「千分位符」「百分比格式」「簡單貨幣」「數字轉字符串」之義。
+
+/* Test 1: Basic number to string conversion */
+云「「Testing 數字轉字符串...」」。
+施「數字轉字符串」於五。書之。
+施「數字轉字符串」於一二三。書之。
+施「數字轉字符串」於〇。書之。
+
+/* Test 2: Decimal formatting */  
+云「「Testing 格式化小數...」」。
+施「格式化小數」於3.14159於二。書之。
+施「格式化小數」於123.45於一。書之。
+
+/* Test 3: Scientific notation */
+云「「Testing 科學記號...」」。
+施「科學記號」於123456。書之。
+施「科學記號」於0.001。書之。
+
+/* Test 4: Thousands separator */
+云「「Testing 千分位符...」」。
+施「千分位符」於1234567。書之。
+
+/* Test 5: Percentage formatting */
+云「「Testing 百分比格式...」」。
+施「百分比格式」於0.75於二。書之。
+
+/* Test 6: Currency formatting */
+云「「Testing 簡單貨幣...」」。
+施「簡單貨幣」於123.45於二。書之。
