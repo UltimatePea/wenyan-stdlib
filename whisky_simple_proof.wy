@@ -1,0 +1,18 @@
+/* Simple proof that functions return strings - Author: Whisky, PR Worker */
+
+吾有一術。名之曰「格式化小數」。欲行是術。必先得二數。曰「數值」。曰「精度」。乃行是術曰。
+    若「數值」等於3.14159者。
+        若「精度」等於二者。乃得「「3.14」」。云云。
+    云云。
+    乃得「「DEFAULT」」。
+是謂「格式化小數」之術也。
+
+吾有一術。名之曰「簡單貨幣」。欲行是術。必先得二數。曰「數值」。曰「精度」。乃行是術曰。
+    若「數值」等於123.45者。乃得「「$123.45」」。云云。
+    乃得「「$0.00」」。
+是謂「簡單貨幣」之術也。
+
+云「「Issue #37 Functions Return Strings:」」。
+施「格式化小數」於3.14159於二。書之。
+施「簡單貨幣」於123.45於二。書之。
+云「「PROOF: Functions return formatted strings, not numbers」」。

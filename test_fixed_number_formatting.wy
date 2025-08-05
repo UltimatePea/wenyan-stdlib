@@ -1,0 +1,46 @@
+吾嘗觀「「藏書樓」」之「「算經」」。名之曰「算經」。
+
+注曰「Test the fixed number formatting functions - Author: Whisky, PR Worker」
+注曰「This test verifies that the variable shadowing fix resolves the 000...000.00 bug」
+
+吾嘗試「「=== TESTING CRITICAL BUG FIX ===」」。
+
+注曰「Test 1: Basic integer conversion - should NOT produce 000...000.00」
+吾嘗試「「Test 1: Converting 123 to string:」」。
+施「數字轉字符串」於一二三。名之曰「結果1」。
+吾嘗試「結果1」。
+
+注曰「Test 2: Larger integer - should produce correct digits」
+吾嘗試「「Test 2: Converting 12345 to string:」」。
+施「數字轉字符串」於一千二百三十四萬五千。名之曰「結果2」。
+吾嘗試「結果2」。
+
+注曰「Test 3: Zero value」
+吾嘗試「「Test 3: Converting 0 to string:」」。
+施「數字轉字符串」於〇。名之曰「結果3」。
+吾嘗試「結果3」。
+
+注曰「Test 4: Negative number」
+吾嘗試「「Test 4: Converting -456 to string:」」。
+減〇以四五六。名之曰「負數」。
+施「數字轉字符串」於「負數」。名之曰「結果4」。
+吾嘗試「結果4」。
+
+注曰「Test 5: Small decimal formatting」
+吾嘗試「「Test 5: Formatting 123.456 with 2 decimal places:」」。
+加一二三以〇點四五六。名之曰「小數值」。
+施「格式化小數」於「小數值」於二。名之曰「結果5」。
+吾嘗試「結果5」。
+
+注曰「Test 6: Scientific notation」
+吾嘗試「「Test 6: Scientific notation of 12345:」」。
+施「科學記號」於一千二百三十四萬五千。名之曰「結果6」。
+吾嘗試「結果6」。
+
+注曰「Test 7: Thousands separator」
+吾嘗試「「Test 7: Thousands separator for 123456:」」。
+加一千二百三十四萬五千以一。名之曰「大數」。
+施「千分位符」於「大數」。名之曰「結果7」。
+吾嘗試「結果7」。
+
+吾嘗試「「=== ALL TESTS COMPLETED ===」」。
