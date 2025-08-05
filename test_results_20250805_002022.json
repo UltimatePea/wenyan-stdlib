@@ -1,19 +1,19 @@
 {
     "testReport": {
-        "timestamp": "2025-08-04T21:07:50-04:00",
+        "timestamp": "2025-08-05T00:20:28-04:00",
         "version": "2.0",
         "framework": "Enhanced Wenyan Test Runner",
         "summary": {
-            "total": 45,
-            "passed": 4,
+            "total": 101,
+            "passed": 6,
             "failed": 0,
-            "skipped": 41,
-            "warnings": 8,
+            "skipped": 95,
+            "warnings": 7,
             "errors": 0,
-            "successRate": 8
+            "successRate": 5
         },
         "performance": {
-            "totalDuration": 3,
+            "totalDuration": 6,
             "slowTests": 0,
             "threshold": 1000
         },
@@ -23,9 +23,9 @@
             "performance": 0
         },
         "reports": {
-            "basicLog": "test_results_20250804_210747.log",
-            "detailedLog": "detailed_test_20250804_210747.log",
-            "htmlReport": "test_summary_20250804_210747.html"
+            "basicLog": "test_results_20250805_002022.log",
+            "detailedLog": "detailed_test_20250805_002022.log",
+            "htmlReport": "test_summary_20250805_002022.html"
         }
     }
 }
