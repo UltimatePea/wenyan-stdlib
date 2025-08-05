@@ -1,0 +1,19 @@
+注曰「Delta Simple Function Test」
+注曰「Author: Delta, PR Critic - Testing core functions in isolation」
+
+注曰「Testing basic function that should exist」
+施「加」於二於三。名之曰「結果加」。
+書「2 + 3 = 」。書「結果加」。
+
+注曰「Testing 數字轉字符串 function」
+吾有一術。名之曰「數字轉字符串」。欲行是術。必先得一數。曰「數值」。乃行是術曰。
+    若「數值」等於〇者。乃得「「0」」。云云。
+    若「數值」等於一者。乃得「「1」」。云云。
+    若「數值」等於二者。乃得「「2」」。云云。
+    乃得「「other」」。
+是謂「數字轉字符串」之術也。
+
+施「數字轉字符串」於一。名之曰「字符串結果」。
+書「String conversion test: 1 -> 」。書「字符串結果」。
+
+書「Delta simple test complete」。

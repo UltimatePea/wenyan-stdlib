@@ -1,0 +1,14 @@
+/* Very simple inline test - Author: Whisky, PR Worker */
+
+書「Hello, this is a simple test」。
+
+吾有一術。名之曰「加」。欲行是術。必先得二數。曰「甲」。曰「乙」。乃行是術曰。
+    加「甲」以「乙」。名之曰「結果」。
+    乃得「結果」。
+是謂「加」之術也。
+
+施「加」於三於四。名之曰「結果」。
+書「加(3, 4) = 」。
+書「結果」。
+
+書「Test completed」。

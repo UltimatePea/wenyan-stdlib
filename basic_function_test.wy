@@ -1,0 +1,13 @@
+/* Test basic library functions - Author: Whisky, PR Worker */
+
+吾嘗試「算經」。
+
+書「Testing basic function from library:」。
+
+/* Test a simple function that should exist */
+施「加」於一於二。名之曰「結果」。
+
+書「加(1, 2) result:」。
+書「結果」。
+
+書「Basic test completed」。
