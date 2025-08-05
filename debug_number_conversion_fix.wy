@@ -1,0 +1,15 @@
+注曰「Debug Number Conversion Issue - Author: Whisky, PR Worker」
+
+吾嘗試「libs/算經/算經」。
+
+書「Testing core number conversion function:」。
+
+注曰「Test basic number to string conversion」
+施「數字轉字符串」於〇。書之。
+施「數字轉字符串」於五。書之。
+施「數字轉字符串」於一二三。書之。
+
+書「Testing decimal formatting:」。
+施「格式化小數」於3.14於二。書之。
+
+書「Debug test complete」。
