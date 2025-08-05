@@ -1,0 +1,11 @@
+/* Testing SVG vs Console Output Issue
+   Author: Whisky, PR Worker */
+
+吾有一言。名之曰「測試文字」。昔之「測試文字」者。今「「Hello World」」也。
+
+/* SVG output (problematic) */
+吾欲雲「SVG輸出測試」。
+
+/* Console output (correct) */
+書之曰「Console輸出測試」。
+書之曰「測試文字」。
