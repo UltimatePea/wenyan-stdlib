@@ -1,0 +1,22 @@
+注曰「Issue #38 Critical Functionality Review by Delta, PR Critic」
+注曰「Testing Chinese Traditional Calendar System Implementation」
+
+注曰「Test 1984 - Expected: 甲子, Actual:」
+施「取年干支」於一千九百八十四。書之。
+
+注曰「Test 2025 - Expected: 乙巳, Actual:」
+施「取年干支」於二千零二十五。書之。
+
+注曰「Test 1984 zodiac - Expected: 鼠, Actual:」
+施「取生肖」於一千九百八十四。書之。
+
+注曰「Test 2025 zodiac - Expected: 蛇, Actual:」  
+施「取生肖」於二千零二十五。書之。
+
+注曰「Test Heavenly Stem index 0 - Expected: 甲, Actual:」
+施「取天干名」於零。書之。
+
+注曰「Test Earthly Branch index 0 - Expected: 子, Actual:」
+施「取地支名」於零。書之。
+
+注曰「Functional Testing Complete」

@@ -1,0 +1,13 @@
+注曰「Debug Issue #38 - String Return Values Problem」
+
+注曰「Test basic string return」
+施「取天干名」於零。名之曰「結果」。
+書之「天干名結果：」。書之「結果」。
+
+注曰「Direct string test」
+吾有一言。名之曰「甲」。昔之「甲」者。今「甲」也。
+書之「甲」。
+
+注曰「Test complete function chain」
+施「取年干支」於一千九百八十四。名之曰「干支」。
+書之「1984年干支：」。書之「干支」。
