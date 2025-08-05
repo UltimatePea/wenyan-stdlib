@@ -1,3 +1,7 @@
+/* 獨立測試數字格式化 - Standalone Number Formatting Test
+ * Author: Whisky, PR Worker
+ */
+
 注曰「獨立測試數字格式化」
 
 注曰「直接測試函數 - 不依賴導入」
