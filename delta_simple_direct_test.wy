@@ -1,0 +1,22 @@
+/* Simple Direct Test of Issue #37 Functions
+ * Author: Delta, PR Critic
+ * Testing the actual implementation
+ */
+
+吾嘗試「藏書樓/算經」。
+
+書「=== SIMPLE DIRECT TEST ===」。
+書「Testing basic number formatting functions from Issue #37」。
+書「」。
+
+書「Test 1: 數字轉字符串」。
+施「數字轉字符串」於〇。書之。
+施「數字轉字符串」於一二三。書之。
+施「數字轉字符串」於負五。書之。
+
+書「」。
+書「Test 2: 格式化小數」。
+施「格式化小數」於3.14159於二。書之。
+
+書「」。
+書「=== END TEST ===」。

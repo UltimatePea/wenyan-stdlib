@@ -1,0 +1,114 @@
+注曰「Calendar Library Complete Validation Test」
+注曰「Author: Whisky, PR Worker」
+注曰「Final validation test for PR #45 Issue #34」
+
+吾嘗試「libs/曆經/曆經」。
+
+書之「=== Calendar Library Complete Validation ===」。
+書之「」。
+
+注曰「Test 1: Basic leap year functionality」
+書之「Test 1: Leap year calculations」。
+施「是否閏年」於二千零二十。名之曰「閏年2020」。
+施「是否閏年」於一千九百。名之曰「閏年1900」。
+施「是否閏年」於二千。名之曰「閏年2000」。
+施「是否閏年」於二千一百。名之曰「閏年2100」。
+書之「2020 is leap year:」。書之「閏年2020」。
+書之「1900 is leap year:」。書之「閏年1900」。
+書之「2000 is leap year:」。書之「閏年2000」。
+書之「2100 is leap year:」。書之「閏年2100」。
+書之「」。
+
+注曰「Test 2: Date validation」
+書之「Test 2: Date validation」。
+施「驗證日期」於二千零二十五於二於二十九。名之曰「驗證1」。
+施「驗證日期」於二千零二十四於二於二十九。名之曰「驗證2」。
+施「驗證日期」於二千零二十五於十三於五。名之曰「驗證3」。
+施「驗證日期」於一千八百九十九於一於一。名之曰「驗證4」。
+書之「2025-02-29 valid:」。書之「驗證1」。
+書之「2024-02-29 valid:」。書之「驗證2」。
+書之「2025-13-05 valid:」。書之「驗證3」。
+書之「1899-01-01 valid:」。書之「驗證4」。
+書之「」。
+
+注曰「Test 3: Julian Day conversion and extraction」
+書之「Test 3: Julian Day conversion」。
+施「創建日期」於二千零二十五於八於五。名之曰「儒略日」。
+施「儒略日轉日期」於「儒略日」。名之曰「還原日期」。
+施「提取年份」於「還原日期」。名之曰「年」。
+施「提取月份」於「還原日期」。名之曰「月」。
+施「提取日期」於「還原日期」。名之曰「日」。
+書之「Julian Day for 2025-08-05:」。書之「儒略日」。
+書之「Restored date:」。書之「還原日期」。
+書之「Extracted year:」。書之「年」。
+書之「Extracted month:」。書之「月」。
+書之「Extracted day:」。書之「日」。
+書之「」。
+
+注曰「Test 4: Date arithmetic」
+書之「Test 4: Date arithmetic」。
+施「日期加天數」於二千零二十五於八於五於十。名之曰「加天結果」。
+施「提取年份」於「加天結果」。名之曰「新年」。
+施「提取月份」於「加天結果」。名之曰「新月」。
+施「提取日期」於「加天結果」。名之曰「新日」。
+書之「2025-08-05 + 10 days:」。
+書之「Result:」。書之「加天結果」。
+書之「Year:」。書之「新年」。
+書之「Month:」。書之「新月」。
+書之「Day:」。書之「新日」。
+書之「」。
+
+注曰「Test 5: Month arithmetic」
+書之「Test 5: Month arithmetic」。
+施「日期加月份」於二千零二十五於一於三十一於一。名之曰「加月結果」。
+施「提取年份」於「加月結果」。名之曰「月年」。
+施「提取月份」於「加月結果」。名之曰「月月」。
+施「提取日期」於「加月結果」。名之曰「月日」。
+書之「2025-01-31 + 1 month:」。
+書之「Result:」。書之「加月結果」。
+書之「Year:」。書之「月年」。
+書之「Month:」。書之「月月」。
+書之「Day:」。書之「月日」。
+書之「」。
+
+注曰「Test 6: Year arithmetic (leap year handling)」
+書之「Test 6: Year arithmetic」。
+施「日期加年份」於二千零二十四於二於二十九於一。名之曰「加年結果」。
+施「提取年份」於「加年結果」。名之曰「年年」。
+施「提取月份」於「加年結果」。名之曰「年月」。
+施「提取日期」於「加年結果」。名之曰「年日」。
+書之「2024-02-29 + 1 year:」。
+書之「Result:」。書之「加年結果」。
+書之「Year:」。書之「年年」。
+書之「Month:」。書之「年月」。
+書之「Day:」。書之「年日」。
+書之「」。
+
+注曰「Test 7: Date comparison and interval」
+書之「Test 7: Date comparison」。
+施「日期比較」於二千零二十五於八於五於二千零二十五於八於十。名之曰「比較結果」。
+施「日期間隔」於二千零二十五於八於五於二千零二十五於八於十。名之曰「間隔結果」。
+書之「Compare 2025-08-05 vs 2025-08-10:」。書之「比較結果」。
+書之「Interval between dates:」。書之「間隔結果」。
+書之「」。
+
+注曰「Test 8: Day of week calculation」
+書之「Test 8: Day of week」。
+施「星期幾」於二千零二十五於八於五。名之曰「星期」。
+書之「Day of week for 2025-08-05:」。書之「星期」。
+書之「」。
+
+注曰「Test 9: Current date function」
+書之「Test 9: Current date」。
+施「獲取當前日期」。名之曰「當前」。
+施「提取年份」於「當前」。名之曰「當前年」。
+施「提取月份」於「當前」。名之曰「當前月」。
+施「提取日期」於「當前」。名之曰「當前日」。
+書之「Current date:」。書之「當前」。
+書之「Current year:」。書之「當前年」。
+書之「Current month:」。書之「當前月」。
+書之「Current day:」。書之「當前日」。
+書之「」。
+
+書之「=== ALL TESTS COMPLETED ===」。
+書之「Author: Whisky, PR Worker」。

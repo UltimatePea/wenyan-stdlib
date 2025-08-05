@@ -1,0 +1,24 @@
+/* Direct Math Library Test
+ * Author: Delta, PR Critic
+ * Testing the mathematical library functions directly
+ */
+
+吾嘗試「libs/算經/算經」。
+
+書「=== DIRECT MATH LIBRARY TEST ===」。
+書「Testing basic mathematical functions」。
+書「」。
+
+書「Test 1: Basic arithmetic」。
+施「加」於三於五。書之。
+施「乘」於四於六。書之。
+
+書「」。
+書「Test 2: Absolute value」。
+施「絕對值」於負五。書之。
+
+書「」。
+書「Test 3: Looking for number formatting functions」。
+書「Testing if functions exist:」。
+
+書「=== END DIRECT TEST ===」。
