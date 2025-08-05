@@ -1,4 +1,5 @@
-/* Minimal test for string literals */
+/* Minimal test for string literals
+   Author: Whisky, PR Worker */
 
 吾有一言。名之曰「測試」。
 昔之「測試」者。今「「hello」」也。
