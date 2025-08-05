@@ -1,0 +1,28 @@
+注曰「Delta Critical Assessment Test for PR #46」
+注曰「Author: Delta, PR Critic」
+
+吾嘗觀「曆經」之書。方悟其意。
+
+書之「「=== Delta Critical Test Start ===」」。
+
+注曰「Test 1: Basic year ganzhi for 1984 (should be 甲子)」
+施「取年干支」於一千九百八十四。名之曰「甲子測試」。
+書之「甲子測試」。
+
+注曰「Test 2: Basic year ganzhi for 2025 (should be 乙巳)」
+施「取年干支」於二千零二十五。名之曰「乙巳測試」。
+書之「乙巳測試」。
+
+注曰「Test 3: Zodiac for 1984 (should be 鼠)」
+施「取生肖」於一千九百八十四。名之曰「鼠測試」。
+書之「鼠測試」。
+
+注曰「Test 4: Heavenly stem index 0 (should be 甲)」
+施「取天干名」於零。名之曰「天干測試」。
+書之「天干測試」。
+
+注曰「Test 5: Leap year 2024 (should be 1)」
+施「是否閏年」於二千零二十四。名之曰「閏年測試」。
+書之「閏年測試」。
+
+書之「「=== Delta Critical Test End ===」」。
