@@ -1,0 +1,121 @@
+/* DELTA DIRECT FUNCTION TEST - Issue #37
+ * Author: Delta, PR Critic
+ * Tests the actual implementation inline to verify behavior
+ */
+
+注曰「Direct implementation test based on libs/算經/算經.wy」
+
+注曰「格式化小數 - Direct implementation test」
+吾有一術。名之曰「格式化小數」。欲行是術。必先得二數。曰「數值」。曰「精度」。乃行是術曰。
+    注曰「輸入驗證」
+    若「精度」小於〇者。乃得「「ERROR: Invalid precision」」。云云。
+    若「精度」大於十五者。乃得「「ERROR: Precision too high」」。云云。
+    若「數值」不等於「數值」者。乃得「「NaN」」。云云。
+    
+    若「數值」等於〇者。
+        若「精度」等於〇者。乃得「「0」」。云云。
+        若「精度」等於一者。乃得「「0.0」」。云云。
+        若「精度」等於二者。乃得「「0.00」」。云云。
+        乃得「「0.00」」。
+    云云。
+    
+    若「數值」等於3.14159者。
+        若「精度」等於二者。乃得「「3.14」」。云云。
+        若「精度」等於三者。乃得「「3.142」」。云云。
+    云云。
+    
+    若「數值」等於123.45者。
+        若「精度」等於〇者。乃得「「123」」。云云。
+        若「精度」等於一者。乃得「「123.5」」。云云。
+        若「精度」等於二者。乃得「「123.45」」。云云。
+    云云。
+    
+    注曰「默認返回字符串表示」
+    乃得「「3.14」」。
+是謂「格式化小數」之術也。
+
+注曰「科學記號 - Direct implementation test」
+吾有一術。名之曰「科學記號」。欲行是術。必先得一數。曰「數值」。乃行是術曰。
+    若「數值」等於〇者。乃得「「0.0e+0」」。云云。
+    若「數值」不等於「數值」者。乃得「「NaN」」。云云。
+    
+    若「數值」等於123456.789者。乃得「「1.23e+5」」。云云。
+    若「數值」等於1000者。乃得「「1.0e+3」」。云云。
+    若「數值」等於0.001者。乃得「「1.0e-3」」。云云。
+    
+    乃得「「1.23e+5」」。
+是謂「科學記號」之術也。
+
+注曰「千分位符 - Direct implementation test」
+吾有一術。名之曰「千分位符」。欲行是術。必先得一數。曰「數值」。乃行是術曰。
+    若「數值」等於〇者。乃得「「0」」。云云。
+    若「數值」不等於「數值」者。乃得「「NaN」」。云云。
+    
+    若「數值」等於1234567.89者。乃得「「1,234,567」」。云云。
+    若「數值」等於1234者。乃得「「1,234」」。云云。
+    若「數值」等於123者。乃得「「123」」。云云。
+    
+    乃得「「1,234」」。
+是謂「千分位符」之術也。
+
+注曰「百分比格式 - Direct implementation test」
+吾有一術。名之曰「百分比格式」。欲行是術。必先得二數。曰「數值」。曰「精度」。乃行是術曰。
+    若「數值」不等於「數值」者。乃得「「NaN%」」。云云。
+    
+    若「數值」等於0.75者。
+        若「精度」等於〇者。乃得「「75%」」。云云。
+        若「精度」等於一者。乃得「「75.0%」」。云云。
+    云云。
+    
+    若「數值」等於0.123者。乃得「「12.3%」」。云云。
+    若「數值」等於1.5者。乃得「「150.0%」」。云云。
+    
+    乃得「「75.0%」」。
+是謂「百分比格式」之術也。
+
+注曰「=== DELTA CRITICAL TESTING ===」
+吾嘗觀「「=== DELTA CRITICAL TESTING FOR ISSUE #37 ===」」之色。
+
+注曰「Test 1: 格式化小數 - Expected: '3.14' (string)」
+施「格式化小數」於3.14159於二。名之曰「結果1」。
+吾嘗觀「「Decimal formatting 3.14159,2: 」」之色。
+吾嘗觀「結果1」之色。
+
+注曰「Test 2: 科學記號 - Expected: '1.23e+5' (string)」
+施「科學記號」於123456.789。名之曰「結果2」。
+吾嘗觀「「Scientific notation 123456.789: 」」之色。
+吾嘗觀「結果2」之色。
+
+注曰「Test 3: 千分位符 - Expected: '1,234' (string)」
+施「千分位符」於1234。名之曰「結果3」。
+吾嘗觀「「Thousands separator 1234: 」」之色。
+吾嘗觀「結果3」之色。
+
+注曰「Test 4: 百分比格式 - Expected: '75%' (string)」
+施「百分比格式」於0.75於〇。名之曰「結果4」。
+吾嘗觀「「Percentage 0.75: 」」之色。
+吾嘗觀「結果4」之色。
+
+注曰「=== CRITICAL ANALYSIS - Expected vs Actual ===」
+吾嘗觀「「=== CRITICAL ANALYSIS ===」」之色。
+吾嘗觀「「EXPECTED: String outputs with proper formatting」」之色。
+吾嘗觀「「ISSUE #37 REQUIREMENT: Functions must return formatted STRINGS」」之色。
+吾嘗觀「「DELTA ASSESSMENT: Checking if implementation is hardcoded patterns」」之色。
+
+注曰「Test Edge Cases」
+吾嘗觀「「=== EDGE CASE TESTING ===」」之色。
+
+注曰「Zero value test」
+施「格式化小數」於〇於二。名之曰「邊界1」。
+吾嘗觀「「Zero formatted: 」」之色。
+吾嘗觀「邊界1」之色。
+
+注曰「Non-matching value test (reveals hardcoding)」
+施「格式化小數」於999.999於二。名之曰「邊界2」。
+吾嘗觀「「Non-matching value 999.999: 」」之色。
+吾嘗觀「邊界2」之色。
+
+注曰「High precision test (reveals limits)」
+施「格式化小數」於3.14159於十。名之曰「邊界3」。
+吾嘗觀「「High precision test: 」」之色。
+吾嘗觀「邊界3」之色。
